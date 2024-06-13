@@ -8,9 +8,10 @@
   color: black;
 }
 
-body {
+html, body {
   font-family: 'Inter', sans-serif;
   background-color: #faf9f7;
+  height: 100%;
 }
 
 /* Header*/
@@ -29,8 +30,8 @@ header {
 }
 
 .header-logo img {
-  width: 100%; 
-  max-width: 150px; 
+  width: 100%;
+  max-width: 150px;
   object-fit: contain;
 }
 
@@ -60,7 +61,7 @@ header {
 /* Footer */
 footer {
   text-align: end;
-  padding: 10px 100px;
+  padding: 15px 100px;
   background-color: white;
 }
 
@@ -68,12 +69,13 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  padding-top: 5px;
   gap: 35px;
 }
 
 .menu-list-footer {
   display: flex;
-  gap: 35px;
+  gap: 30px;
 }
 
 .logo-footer {
@@ -81,3 +83,204 @@ footer {
   object-fit: contain;
 }
 
+.container-profile-public 
+{
+  display: flex;
+  flex-direction: row;
+  gap: 52px;
+  justify-content: center;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  min-height: 90vh;
+}
+
+.profile-public-info
+{
+  border: 1px solid transparent;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  background-color: white;
+  gap: 27px;
+  align-items: center;
+  max-height: 900px;
+  
+}
+
+.profile-public-photo
+{
+  border: 1px solid transparent;
+  height: 150px;
+  width: 150px;
+  margin: 50px 0px 20px 0px;
+  border-radius: 100px;
+}
+
+.profile-public-info img 
+{
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.profile-public-name
+{
+  border-top: 1px solid #edeaea;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  padding: 40px 0px 0px 0px;
+  font-family: 'Playfair Display', sans-serif !important;
+  font-size: 30px;
+}
+
+.profile-public-uploads 
+{
+  width: 55%;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.profile-public-uploads-table
+{
+  width: 100%;
+  padding: 40px 0px 5px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  max-height: 900px;
+}
+
+.profile-public-date p
+{
+  font-size: 15px;
+  color: gray;
+}
+
+.profile-public-library
+{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  text-align: center;
+  font-size: 12px;
+  gap: 9px;
+}
+.profile-public-library-biblioteque
+{
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.profile-public-library-livres
+{
+  font-size: 15px;
+}
+
+.profile-public-button 
+{
+  width: 60%;
+}
+
+.profile-public-button button 
+{
+  border: 1px solid #00ac66;
+  border-radius: 10px;
+  color: #00ac66;
+  height: 65px;
+  width: 100%;
+  background-color: #f5f3ef;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.table-header
+{
+  border-bottom: 1px solid #edeaea;
+  width: 100%;
+  display: flex;
+  font-weight: 400;
+  padding-bottom: 15px;
+  justify-content: center;
+}
+
+.table-header tr
+{
+
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 13px;
+}
+.table-header th
+{
+  font-weight: 400;
+ 
+  justify-content: space-between;
+  width: 20%;
+ 
+}
+
+.table-content {
+ 
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  justify-content: center;
+  table-layout: fixed;
+}
+.table-content tr 
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 60px 0px 60px;
+  height: 140px;
+}
+
+.table-content tr:nth-child(even) {
+  background-color: #edf2f6; /* Light gray color for even rows */
+}
+
+.table-content tr:nth-child(odd) {
+  background-color: #ffffff; /* White color for odd rows */
+}
+
+.table-content td
+{
+  
+  width: 20%;
+  max-height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.table-content td p 
+{
+width: 100%;
+text-align: left; 
+margin: 0; 
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;
+}
+
+.table-content img 
+{
+  height: 90px;
+  width: 90px;
+  object-fit: cover;
+}

@@ -26,12 +26,12 @@ class DBManager
     return $this->db;
   }
 
-  public function query(string $sql, ?array $params = null) : PDOStatement
+  public function query(string $statement, ?array $params = null) : PDOStatement
   {
     if ($params == null) {
-      $query = $this->db->query($sql);
+      $query = $this->db->query($statement);
     } else {
-      $query = $this->db->prepare($sql);
+      $query = $this->db->prepare($statement);
       $query->execute($params);
     }
     return $query;
