@@ -4,7 +4,7 @@ abstract class AbstractEntity
 {
   protected int $id = -1;
 
-  public function __construct(array $dat = [])
+  public function __construct(array $data = [])
   {
     if (!empty($data)) {
       $this->hydrate($data);
@@ -14,7 +14,7 @@ abstract class AbstractEntity
   protected function hydrate(array $data) : void 
   {
     foreach ($data as $key => $value) {
-      $methid = 'set' . str_replace('_', '', ucwords($key, '_'));
+      $method = 'set' . str_replace('_', '', ucwords($key, '_'));
       if (method_exists($this, $method)) {
         if ($value !== null) {
           $this->$method($value);

@@ -32,7 +32,7 @@
         <ul class="menu-list-nav">
           <li><a href="#">Messagerie</a></li>
           <li><a href="index.php?action=profilePublic">Mon compte</a></li>
-          <li><a href="#">Connexion</a></li>
+          <li><a href="index.php?action=connectionForm">Connexion</a></li>
           <li><a href="#">Deconnexion</a></li>
         </ul>
       </nav>

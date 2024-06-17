@@ -2,11 +2,11 @@
 
 class View 
 {
-  private string $title;
+  private string $template;
 
-  public function __construct($title)
+  public function __construct($template)
   {
-    $this->title = $title;
+    $this->template = $template;
   }
 
   public function render(string $viewName, array $params = []) : void 
@@ -14,7 +14,7 @@ class View
     $viewPath = $this->buildViewPath($viewName);
     //echo "View path: $viewPath";
     $content = $this->_renderViewFromTemplate($viewPath, $params);
-    $title = $this->title;
+    $template = $this->template;
     ob_start();
     require(MAIN_VIEW_PATH);
     echo ob_get_clean();

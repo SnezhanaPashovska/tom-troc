@@ -1,24 +1,20 @@
-
-<?php
-
-?>
-
+<?php if (isset($user)) : ?>
 <section class="public-profile account"></section>
-<h2></h2>
+<h2>Profile of <?= htmlspecialchars($user->getUsername()); ?></h2>
 
 <div class="container-profile-public">
   <div class="profile-public-info">
     <div class="profile-public-photo">
-    <img src="" alt="">
+      <img src="<?= htmlspecialchars($user->getImage()); ?>" alt="User Image">
     </div>
     <div class="profile-public-name">
-      <p></p>
+      <p><?= htmlspecialchars($user->getUsername()); ?></p>
     </div>
     <div class="profile-public-date">
-      <p>Membre depuis </p>
+      <p>Membre depuis <?= htmlspecialchars($user->getCreationDate()->format('Y-m-d H:i:s')); ?></p>
     </div>
     <div class="profile-public-library">
-      <p class="profile-public-library-biblioteque">BIBLIOTEQUE</p>
+      <p class="profile-public-library-biblioteque">BIBLIOTHEQUE</p>
       <p class="profile-public-library-livres"> livres</p>
     </div>
     <div class="profile-public-button">
@@ -38,17 +34,14 @@
       </thead>
       <tbody class="table-content">
         <tr>
-        <td><img src="" alt=""></td>
-        <td><p></p></td>
-        <td><p></p></td>
-        <td><p></p></td>
+          <td><img src="" alt=""></td>
+          <td><p></p></td>
+          <td><p></p></td>
+          <td><p></p></td>
         </tr>
       </tbody>
     </table>
-
   </div>
-
 </div>
-
-
+<?php endif; ?>
 

@@ -2,61 +2,100 @@
 
 class UserController {
 
-
+    // Displays the user profile page
     public function showUser() : void
     {
-        $this->checkIfUserIsConnected();
+        Utils::checkIfUserIsConnected();
 
-        $userManager = new UserManager();
-        $bookManager = new BookManager();
-        $books = $bookManager->getAllBooks();
 
-        $view = new View("User Page");
-        $view->render("profilePublic", [
-            'Books' => $books,
-        ]);
+        $userManager = new UserManager(DBManager::getInstance());
+        $user = $userManager->getUserById($_SESSION['idUser']);
+        
+        var_dump($user);
+        
+       
+            // Render the view with user data
+            $view = new View("Profile");
+            $view->render("profilePublic", ['user' => $user]);
+       
     }
 
-    private function checkIfUserIsConnected() : void
-    {
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
-        }
-    }
-
+    // Displays the connection form
     public function displayConnectionForm() : void 
     {
         $view = new View("Connexion");
         $view->render("connectionForm");
     }
 
+    // Handles user connection
     public function connectUser() : void 
     {
-        $email = Utils::request("email");
-        $password = Utils::request("password");
+        $email = htmlspecialchars(Utils::request("email"));
+        $password = htmlspecialchars(Utils::request("password"));
 
         if (empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires. 1");
         }
 
-        $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($email);
+        $userManager = new UserManager(DBManager::getInstance());
+        $user = $userManager->getUserByEmail($email);
+
         if (!$user) {
             throw new Exception("L'utilisateur demandé n'existe pas.");
         }
 
         if (!password_verify($password, $user->getPassword())) {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
             throw new Exception("Le mot de passe est incorrect : $hash");
         }
 
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
-
-        var_dump($_SESSION['user']);
     
-        Utils::redirect("User");    
+        Utils::redirect("profilePublic");    
     }
+
+    // Handles user subscription
+    public function subscribeUser() : void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Handle form submission
+            $username = htmlspecialchars(Utils::request("username") ?? '');
+            $email = htmlspecialchars(Utils::request("email") ?? '');
+            $password = htmlspecialchars(Utils::request("password") ?? '');
+
+            if (empty($username) || empty($email) || empty($password)) {
+                throw new Exception("Tous les champs sont obligatoires.");
+            }
+
+            // Hash the password
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            // Create a new User object
+            $newUser = new User([
+                'username' => $username,
+                'email' => $email,
+                'password' => $hashedPassword,
+                'isAdmin' => false  // Default value for isAdmin
+            ]);
+
+            // Add the user to the database
+            $userManager = new UserManager(DBManager::getInstance());
+            $addedUser = $userManager->addUser($newUser);
+
+            if ($addedUser) {
+                // Successfully added user, redirect to profile or login page
+                Utils::redirect("connectionForm");
+            } else {
+                // Handle the failure case
+                throw new Exception("L'inscription a échoué.");
+            }
+        } else {
+            // Display the subscription form
+            $view = new View("Subscription");
+            $view->render("subscriptionForm");
+        }
+    }
+
 
     public function disconnectUser() : void 
     {
@@ -65,59 +104,5 @@ class UserController {
         Utils::redirect("home");
     }
 
-    public function showUpdateBookForm() : void 
-    {
-        $this->checkIfUserIsConnected();
-
-        $id = Utils::request("id", -1);
-
-        $bookManager = new BookManager();
-        $book = $bookManager->getBookById($id);
-
-        if (!$book) {
-            $book = new Book();
-        }
-
-        $view = new View("Edition d'un Book");
-        $view->render("updateBookForm", [
-            'Book' => $book
-        ]);
-    }
-
-    public function updateBook() : void 
-    {
-        $this->checkIfUserIsConnected();
-
-        $id = Utils::request("id", -1);
-        $title = Utils::request("title");
-        $content = Utils::request("content");
-
-        if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 2");
-        }
-
-        $book = new Book([
-            'id' => $id, 
-            'title' => $title,
-            'content' => $content,
-            'id_user' => $_SESSION['idUser']
-        ]);
-
-        $bookManager = new BookManager();
-        $bookManager->addOrUpdateBook($book);
-
-        Utils::redirect("User");
-    }
-
-    public function deleteBook() : void
-    {
-        $this->checkIfUserIsConnected();
-
-        $id = Utils::request("id", -1);
-
-        $bookManager = new BookManager();
-        $bookManager->deleteBook($id);
-
-        Utils::redirect("User");
-    }
+   
 }

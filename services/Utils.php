@@ -43,4 +43,12 @@ class Utils {
     {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
+
+    private function checkIfUserIsConnected() : void
+    {
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("connectionForm");
+            exit;
+        }
+    }
 }

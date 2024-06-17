@@ -2,9 +2,8 @@
 
 class DBManager
 {
-  private static $instance;
-
   private $db;
+  private static $instance;
 
   private function __construct()
   {
