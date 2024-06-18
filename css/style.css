@@ -50,12 +50,42 @@ header {
 .menu-list-nav {
   display: flex;
   gap: 10px;
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+.menu-list-nav li {
+  display: flex;
+  align-items: center; 
 }
 
 .menu-list-nav li a {
+  display: flex;
+  align-items: center;
   color: black;
   cursor: pointer;
-  padding: 10px; 
+  padding: 10px;
+  text-decoration: none;
+}
+
+.menu-list-nav li img 
+{
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.notification-badge {
+  background-color: black;
+  color: white;
+  border-radius: 47%;
+  padding: 2px 4px;
+  font-size: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  transform: scaleX(0.9);
 }
 
 /* Footer */
@@ -166,9 +196,11 @@ footer {
   flex-direction: column;
   width: 80%;
   text-align: center;
+  justify-content: center;
   font-size: 12px;
   gap: 9px;
 }
+
 .profile-public-library-biblioteque
 {
   font-size: 10px;
@@ -177,6 +209,18 @@ footer {
 
 .profile-public-library-livres
 {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-public-library-livres img 
+{
+  width: 4%;
+  border-radius: 0;
+  object-fit: contain;
   font-size: 15px;
 }
 
@@ -219,20 +263,19 @@ footer {
 .table-header th
 {
   font-weight: 400;
- 
   justify-content: space-between;
   width: 20%;
- 
 }
 
-.table-content {
- 
+.table-content 
+{ 
   display: flex;
   flex-direction: column;
   width: 100%; 
   justify-content: center;
   table-layout: fixed;
 }
+
 .table-content tr 
 {
   width: 100%;
@@ -253,7 +296,6 @@ footer {
 
 .table-content td
 {
-  
   width: 20%;
   max-height: 120px;
   overflow: hidden;
@@ -369,4 +411,96 @@ form p
 .connection-form-image img {
   max-width: 100%;
   height: auto;
+}
+
+.home-main
+{
+  display: flex;
+  flex-direction: row;
+  background-color: #f5f3ef;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  justify-content: center;
+}
+
+.home-main-text
+{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center; 
+  justify-content: center;
+  text-align: center; 
+}
+
+.home-main-text h2 
+{
+  width: 34%;
+  font-family: 'Playfair Display', sans-serif;
+  font-size: 29px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: left; 
+}
+
+.home-main-text p 
+{
+  width: 34%; 
+  text-align: left; 
+  line-height: 1.5; 
+  font-size: 16px;
+  margin-bottom: 20px;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: justify-all;
+}
+
+.home-main-image
+{
+  width: 50%;
+}
+
+.home-main-image img 
+{
+  object-fit: cover;
+}
+
+.home-main-text button
+{
+  background-color: #00ac66;
+  width: 15%;
+  align-self: center; /* Align the button to the start of the text */
+  padding: 15px 0; /* Add padding for better appearance */
+  border: 1px solid transparent;
+  color: white;
+  cursor: pointer;
+  margin-right: 160px;
+  border-radius: 10px;
+}
+
+.home-main-image p
+{
+ width: 10%;
+ margin-left: 350px;
+ color:#ababab;
+ font-style: italic;
+}
+
+.home-last-books
+{
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  
+}
+
+.home-last-books-list
+{
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  
 }

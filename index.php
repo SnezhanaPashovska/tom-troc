@@ -46,6 +46,10 @@ try {
       $userController->subscribeUser();
       break;
 
+      case 'disconnect':
+        $userController = new UserController();
+        $userController->disconnectUser();
+        break;
 
     default: 
     throw new Exception("Unknown action: $action");

@@ -11,7 +11,6 @@ class ProfilePageController
 
   public function showProfile() :void 
   {
-    //echo "Inside showProfile <br>";
     $view = new View("Profile");
     $view->render("profilePublic");
   }

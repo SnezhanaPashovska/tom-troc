@@ -6,8 +6,7 @@ if (isset($_SESSION['idUser'])) {
     $user = $userManager->getUserById($_SESSION['idUser']);
 }
 ?>
-<section class="public-profile account"></section>
-<h2></h2>
+<section class="public-profile account">
 
 <div class="container-profile-public">
   <div class="profile-public-info">
@@ -22,10 +21,10 @@ if (isset($_SESSION['idUser'])) {
     </div>
     <div class="profile-public-library">
       <p class="profile-public-library-biblioteque">BIBLIOTHEQUE</p>
-      <p class="profile-public-library-livres"> livres</p>
+      <p class="profile-public-library-livres"><img src="images/Vector.svg" alt="Book icones"> livres</p>
     </div>
     <div class="profile-public-button">
-      <button>Ecrire un message</button>
+      <button>Écrire un message</button>
     </div>
   </div>
 
@@ -50,6 +49,6 @@ if (isset($_SESSION['idUser'])) {
     </table>
   </div>
 </div>
-
+</section>
 
 

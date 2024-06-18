@@ -1,4 +1,4 @@
-<section class="connection-form-page"></section>
+<section class="connection-form-page">
 
 <div class="container-connection-form">
   <div class="connection-form">
@@ -18,3 +18,4 @@
     <img src="images/Mask-group.png" alt="">
   </div>
 </div>
+</section>
