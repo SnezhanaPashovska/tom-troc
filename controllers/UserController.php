@@ -2,23 +2,29 @@
 
 class UserController {
 
-    // Displays the user profile page
-    public function showUser() : void
+    
+    private function checkIfUserIsConnected() : void
     {
-        Utils::checkIfUserIsConnected();
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("connectionForm");
+            exit;
+        }
+    }
+    // Displays the user profile page
+    public function showUser(): void {
+        $this->checkIfUserIsConnected();
 
-
-        $userManager = new UserManager(DBManager::getInstance());
+        $userManager = new UserManager();
         $user = $userManager->getUserById($_SESSION['idUser']);
-        
-        var_dump($user);
-        
-       
-            // Render the view with user data
+
+        if ($user) {
             $view = new View("Profile");
             $view->render("profilePublic", ['user' => $user]);
-       
+        } else {
+            echo "<p>User data not available.</p>"; // Handle case where user is not found
+        }
     }
+    
 
     // Displays the connection form
     public function displayConnectionForm() : void 
@@ -37,7 +43,7 @@ class UserController {
             throw new Exception("Tous les champs sont obligatoires. 1");
         }
 
-        $userManager = new UserManager(DBManager::getInstance());
+        $userManager = new UserManager();
         $user = $userManager->getUserByEmail($email);
 
         if (!$user) {
@@ -50,6 +56,8 @@ class UserController {
 
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
+
+        var_dump($_SESSION['idUser']);
     
         Utils::redirect("profilePublic");    
     }

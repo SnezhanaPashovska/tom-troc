@@ -2,7 +2,8 @@
 
 class View 
 {
-  private string $template;
+  private $template;
+  private $params = [];
 
   public function __construct($template)
   {

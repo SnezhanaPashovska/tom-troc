@@ -7,7 +7,7 @@
 <div class="container-connection-form">
   <div class="connection-form">
   <h2>Connexion</h2>
-  <form action="index.php?action=profilePublic" method="post">
+  <form action="index.php?action=connectUser" method="post">
     <p>Adresse email</p>
     <input type="email" name="email" placeholder="" required>
     <p>Mot de passe</p>

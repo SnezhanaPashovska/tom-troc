@@ -1,17 +1,24 @@
-<?php if (isset($user)) : ?>
+<?php 
+$userManager = new UserManager();
+$user = null;
+
+if (isset($_SESSION['idUser'])) {
+    $user = $userManager->getUserById($_SESSION['idUser']);
+}
+?>
 <section class="public-profile account"></section>
-<h2>Profile of <?= htmlspecialchars($user->getUsername()); ?></h2>
+<h2></h2>
 
 <div class="container-profile-public">
   <div class="profile-public-info">
     <div class="profile-public-photo">
-      <img src="<?= htmlspecialchars($user->getImage()); ?>" alt="User Image">
+      <img src="<?= htmlspecialchars($user->getImage()) ?>" alt="User Image">
     </div>
     <div class="profile-public-name">
-      <p><?= htmlspecialchars($user->getUsername()); ?></p>
+      <p><?= htmlspecialchars($user->getUsername()) ?></p>
     </div>
     <div class="profile-public-date">
-      <p>Membre depuis <?= htmlspecialchars($user->getCreationDate()->format('Y-m-d H:i:s')); ?></p>
+      <p>Membre depuis <?= htmlspecialchars($user->getMembershipDuration()) ?> </p>
     </div>
     <div class="profile-public-library">
       <p class="profile-public-library-biblioteque">BIBLIOTHEQUE</p>
@@ -43,5 +50,6 @@
     </table>
   </div>
 </div>
-<?php endif; ?>
+
+
 

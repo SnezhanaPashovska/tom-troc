@@ -1,7 +1,8 @@
 <?php
 
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once __DIR__ . '/config/_config.php';
 require_once __DIR__ . '/config/autoload.php';
@@ -25,6 +26,12 @@ try {
       $profilePageController = new ProfilePageController();
       $profilePageController->showProfile();
       break;
+
+      case 'connectUser':
+        // Instantiate UserController and call connectUser method
+        $userController = new UserController();
+        $userController->connectUser();
+        break;
 
     case 'connectionForm': 
       $userController = new UserController();

@@ -5,32 +5,43 @@ class UserManager extends AbstractEntityManager
 
   protected $db;
 
-  public function __construct(DBManager $db) {
-
-    $this->db = $db;
+  public function __construct()
+  {
+      $this->db = DBManager::getInstance()->getPDO();
   }
 
 
-  public function getUserByEmail(string $email) : ?User 
+  public function getUserByEmail(string $email): ?User
   {
-    $statement = "SELECT * FROM user WHERE email = :email";
-    $result = $this->db->query($statement, ['email' => $email]);
-    $user = $result->fetch();
-    
-    if ($user) {
-        $userObject = new User();
-        $userObject->setId($user['id']);
-        $userObject->setUsername($user['username']);
-        $userObject->setEmail($user['email']);
-        $userObject->setPassword($user['password']);
-        $userObject->setImage($user['image']);
-        $userObject->setIsAdmin((bool)$user['is_Admin']);
-        $userObject->setCreationDate($user['creation_date']); // Assuming creation_date is in a format accepted by setCreationDate
-        
-        return $userObject;
-    }
-    
-    return null;
+      // SQL query to select user by email
+      $query = "SELECT * FROM user WHERE email = :email";
+      
+      // Prepare the statement
+      $statement = $this->db->prepare($query);
+      
+      // Bind parameter
+      $statement->bindParam(':email', $email);
+      
+      // Execute the query
+      $statement->execute();
+      
+      // Fetch user data as associative array
+      $userData = $statement->fetch(PDO::FETCH_ASSOC);
+      
+      // If user data is fetched, create a User object
+      if ($userData) {
+          $user = new User();
+          $user->setId($userData['id']);
+          $user->setUsername($userData['username']);
+          $user->setEmail($userData['email']);
+          $user->setPassword($userData['password']);
+          // Set other properties as needed
+          
+          return $user;
+      }
+      
+      // Return null if no user found
+      return null;
   }
 
   public function addUser(User $user) : ?User 
@@ -55,15 +66,35 @@ class UserManager extends AbstractEntityManager
       }
     }
 
-    public function getUserById(int $id) : ?User 
-    {
-      $statement = "SELECT * FROM user WHERE id = :id";
-      $result = $this->db->query($statement, ['id' => $id]);
-      $user = $result->fetch();
-      if ($user) {
-        return new User($user);
-      }
-      return null;
+    public function getUserById(int $id = null) : ?User
+{
+    if ($id === null) {
+        return null; // Return null if id is not provided
     }
+
+    $query = "SELECT * FROM user WHERE id = :id";
+    $statement = $this->db->prepare($query);
+    $statement->execute([':id' => $id]);
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    //var_dump($user); // Debugging line to check the fetched user data
+
+    if ($user) {
+        return new User($user);
+    }
+    return null;
+}
+      
+
+    /*return [
+        'id' => $userData->getUsername(),
+        'username' => $userData->getUsername(),
+        'email' => $userData['email'],
+        'password' => $userData['password'],
+        'image' => $userData['image'],
+        'is_Admin' => (bool) $userData['is_Admin'],
+        'creation_date' => $userData['creation_date']
+    ];*/
+      
 
 }
