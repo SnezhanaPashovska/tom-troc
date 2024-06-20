@@ -27,11 +27,11 @@ try {
       $profilePageController->showProfile();
       break;
 
-      case 'connectUser':
+    case 'connectUser':
         // Instantiate UserController and call connectUser method
-        $userController = new UserController();
-        $userController->connectUser();
-        break;
+      $userController = new UserController();
+      $userController->connectUser();
+      break;
 
     case 'connectionForm': 
       $userController = new UserController();
@@ -47,9 +47,14 @@ try {
       break;
 
       case 'disconnect':
-        $userController = new UserController();
-        $userController->disconnectUser();
-        break;
+      $userController = new UserController();
+      $userController->disconnectUser();
+      break;
+
+      case 'ourBooks' : 
+      $bookController = new BookController();
+      $bookController->showBook();
+      break;
 
     default: 
     throw new Exception("Unknown action: $action");

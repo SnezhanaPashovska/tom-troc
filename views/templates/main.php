@@ -21,7 +21,7 @@
       <nav class="menu-list">
         <ul class="menu-list-nav">
           <li><a href="index.php?action=home">Accueil</a></li>
-          <li><a href="#">Nos livres à l'echange</a></li>
+          <li><a href="index.php?action=ourBooks">Nos livres à l'echange</a></li>
         </ul>
       </nav>
       <div></div>
