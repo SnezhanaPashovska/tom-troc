@@ -1,6 +1,3 @@
-<?php
-
-?>
 
 <section class="our-books">
   <div class="our-books-container">
@@ -11,13 +8,24 @@
         <input type="search" class="search-input" placeholder="Rechercher un livre">
       </div>
     </div>
+    <div class="books">
+    <?php if (!empty($books) && is_array($books)) { ?>
+    <?php foreach($books as $book) { ?>
     <div class="books-list">
       <div class="books-list-details">
-        <img src="images/Rectangle 2-1.jpg" alt="">
-        <h3>Esther</h3>
-        <p>Alabaster</p>
-        <p>Vendu par : </p>
+      <a href="bookDetails.php?id=<?= $book->getId() ?>" class="book-card">
+        <img src="<?= $book->getImage() ?>" alt="">
+        <h3><?= $book->getTitle() ?></h3>
+        <p><?= $book->getAuthor() ?></p>
+        <p class="books-list-seller">Vendu par : <?= $book->getUserName()  ?> </p>
+        </a>
       </div>
     </div>
+    <?php } ?>
+    <?php } else { ?>
+      <p>Aucun livre trouvé.</p>
+    <?php } ?>
+    </div>
+    
   </div>
 </section>

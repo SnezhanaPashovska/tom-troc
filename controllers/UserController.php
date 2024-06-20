@@ -18,7 +18,7 @@ class UserController {
 
         if ($user) {
             $view = new View("Profile");
-            $view->render("profilePublic", ['user' => $user]);
+            $view->render("myAccount", ['user' => $user]);
         } else {
             echo "<p>User data not available.</p>"; 
         }
@@ -53,7 +53,7 @@ class UserController {
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
     
-        Utils::redirect("profilePublic");    
+        Utils::redirect("myAccount");    
     }
 
     public function subscribeUser() : void

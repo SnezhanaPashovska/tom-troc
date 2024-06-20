@@ -48,7 +48,8 @@ class UserManager extends AbstractEntityManager
         'is_Admin' => $user->isAdmin(),
       ];
   
-        $this->db->query($statement, $params);
+      $stmt = $this->db->prepare($statement);
+      $stmt->execute($params);
         
         return $this->getUserByEmail($user->getEmail());
       } catch (PDOException $e) {

@@ -27,8 +27,12 @@ try {
       $profilePageController->showProfile();
       break;
 
+      case 'myAccount':
+      $userController = new UserController();
+      $userController->showUser();
+        break;
+
     case 'connectUser':
-        // Instantiate UserController and call connectUser method
       $userController = new UserController();
       $userController->connectUser();
       break;
@@ -52,6 +56,11 @@ try {
       break;
 
       case 'ourBooks' : 
+      $bookController = new BookController();
+      $bookController->showBook();
+      break;
+
+      case 'bookDetail' : 
       $bookController = new BookController();
       $bookController->showBook();
       break;

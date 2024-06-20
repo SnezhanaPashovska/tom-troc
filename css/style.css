@@ -693,13 +693,12 @@ form p
 
 .our-books-title
 {
-
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 65%;
   align-self: center;
   justify-content: space-between;
-  margin: 130px 0px 130px 0px;
+  margin: 130px 20px 130px 0px;
   font-family: 'Playfair Display', sans-serif;
   font-weight: 400;
 }
@@ -748,57 +747,119 @@ form p
 
 .books-list
 {
-  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 70%;
+  width: 20%;
   align-self: center;
+  margin: 10px 25px 35px 0px;
 }
 
-.books-list-details 
-{
-  
-  margin: 10px 25px 35px 0px;
+.books-list-details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 20%;
+  width: 100%;
   border-radius: 0px 0px 10px 10px;
   background-color: white;
-  
+  height: 350px;
 }
 
-.books-list-details img 
-{
-  object-fit: contain;
+.books-list-details .book-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.books-list-details .book-card img {
+  object-fit: cover;
   margin-bottom: 20px;
+  width: 100%;
+  height: 60%;
 }
 
-.books-list-details h3
-{
+.books-list-details .book-card h3 {
   font-size: 16px;
   font-weight: 500;
   width: 80%;
   margin: 0px 0px 10px 10px;
 }
 
-.books-list-details p
-{
+.books-list-details .book-card p {
   width: 80%;
   margin: 0px 0px 10px 10px;
   font-size: 14px;
   color: #ababab;
 }
 
-.last-book-seller
-{
+.books-list-details .book-card .books-list-seller {
   width: 80%;
   margin: 10px 0px 20px 10px;
-  font-size: 11px;
   color: #ababab;
   font-style: italic;
+  padding: 10px 0px 10px 0px;
+  font-size: 10px !important;
 }
 
+.books {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 65%;
+  align-self: center;
+}
 
+.my-account-details 
+{
+  border: 1px solid red;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.my-account-title
+{
+  border: 1px solid fuchsia;
+  width: 80%;
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.my-account-container 
+{
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-account-details-content
+{
+  border: 1px solid black;
+  width: 47%;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  background-color: white;
+  gap: 27px;
+  align-items: center;
+  max-height: 900px;
+}
+
+.my-account-update
+{
+  border: 1px solid green;
+  width: 47%;
+ 
+  
+}
