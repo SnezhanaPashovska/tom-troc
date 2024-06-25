@@ -15,7 +15,7 @@
 <body>
   <header class="header">
     <div class="header-logo">
-      <img class="logo" src="/images/logo@2x.png" alt="Logo Tom Troc">
+      <a href="index.php?action=home"><img class="logo" src="/images/logo@2x.png" alt="Logo Tom Troc"></a>
     </div>
     <div class="header-menu">
       <nav class="menu-list">

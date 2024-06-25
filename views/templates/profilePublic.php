@@ -2,9 +2,6 @@
 $userManager = new UserManager();
 $user = null;
 
-if (isset($_SESSION['idUser'])) {
-    $user = $userManager->getUserById($_SESSION['idUser']);
-}
 ?>
 <section class="public-profile account">
 
@@ -14,7 +11,7 @@ if (isset($_SESSION['idUser'])) {
       <img src="<?= htmlspecialchars($user->getImage()) ?>" alt="User Image">
     </div>
     <div class="profile-public-name">
-      <p><?= htmlspecialchars($user->getUsername()) ?></p>
+      <p><?= $user->getUserName()  ?></p>
     </div>
     <div class="profile-public-date">
       <p>Membre depuis <?= htmlspecialchars($user->getMembershipDuration()) ?> </p>

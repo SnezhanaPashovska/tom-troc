@@ -33,6 +33,7 @@ header {
   width: 100%;
   max-width: 150px;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .header-menu {
@@ -113,7 +114,7 @@ footer {
   object-fit: contain;
 }
 
-.container-profile-public 
+.container-profile-public
 {
   display: flex;
   flex-direction: row;
@@ -138,7 +139,8 @@ footer {
   
 }
 
-.profile-public-photo
+
+.profile-public-photo, .my-account-details-photo
 {
   border: 1px solid transparent;
   height: 150px;
@@ -147,7 +149,12 @@ footer {
   border-radius: 100px;
 }
 
-.profile-public-info img 
+.my-account-details-photo
+{
+  margin-bottom: 0px;
+}
+
+.profile-public-info img, .my-account-details-photo img 
 {
   height: 100%;
   width: 100%;
@@ -155,7 +162,7 @@ footer {
   object-fit: cover;
 }
 
-.profile-public-name
+.profile-public-name, .my-account-name
 {
   border-top: 1px solid #edeaea;
   width: 80%;
@@ -163,17 +170,22 @@ footer {
   margin-top: 30px;
   padding: 40px 0px 0px 0px;
   font-family: 'Playfair Display', sans-serif !important;
-  font-size: 30px;
+  font-size: 27px;
 }
 
-.profile-public-uploads 
+.profile-public-uploads, .my-account-books 
 {
   width: 55%;
   border-radius: 20px;
   background-color: white;
 }
 
-.profile-public-uploads-table
+.my-account-books 
+{
+  width: 80%;
+}
+
+.profile-public-uploads-table, .my-account-books-table
 {
   width: 100%;
   padding: 40px 0px 5px 0px;
@@ -184,13 +196,13 @@ footer {
   max-height: 900px;
 }
 
-.profile-public-date p
+.profile-public-date p, .my-account-date p
 {
   font-size: 15px;
   color: gray;
 }
 
-.profile-public-library
+.profile-public-library, .my-account-library
 {
   display: flex;
   flex-direction: column;
@@ -201,13 +213,13 @@ footer {
   gap: 9px;
 }
 
-.profile-public-library-biblioteque
+.profile-public-library-biblioteque, .my-account-library-biblioteque
 {
   font-size: 10px;
   font-weight: 600;
 }
 
-.profile-public-library-livres
+.profile-public-library-livres, .my-account-library-livres
 {
   font-size: 15px;
   display: flex;
@@ -216,12 +228,12 @@ footer {
   gap: 5px;
 }
 
-.profile-public-library-livres img 
+.profile-public-library-livres img, .my-account-library-livres img
 {
-  width: 4%;
+  width: 3%;
   border-radius: 0;
   object-fit: contain;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .profile-public-button 
@@ -241,7 +253,7 @@ footer {
   font-size: 14px;
 }
 
-.table-header
+.table-header, .table-header-book
 {
   border-bottom: 1px solid #edeaea;
   width: 100%;
@@ -251,23 +263,22 @@ footer {
   justify-content: center;
 }
 
-.table-header tr
+.table-header tr, .table-header-book tr
 {
-
   width: 85%;
   display: flex;
   justify-content: space-between;
   text-align: left;
   font-size: 13px;
 }
-.table-header th
+.table-header th, .table-header-book th
 {
   font-weight: 400;
   justify-content: space-between;
   width: 20%;
 }
 
-.table-content 
+.table-content, .table-book 
 { 
   display: flex;
   flex-direction: column;
@@ -275,8 +286,8 @@ footer {
   justify-content: center;
   table-layout: fixed;
 }
-
-.table-content tr 
+ 
+.table-content tr, .table-book tr
 {
   width: 100%;
   display: flex;
@@ -286,15 +297,23 @@ footer {
   height: 140px;
 }
 
-.table-content tr:nth-child(even) {
+.table-book tr
+{ 
+  padding: 10px 60px 0px 60px;
+  width: 95%;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.table-content tr:nth-child(even), .table-book tr:nth-child(even) {
   background-color: #edf2f6; /* Light gray color for even rows */
 }
 
-.table-content tr:nth-child(odd) {
+.table-content tr:nth-child(odd), .table-book tr:nth-child(odd) {
   background-color: #ffffff; /* White color for odd rows */
 }
 
-.table-content td
+.table-content td, .table-book td
 {
   width: 20%;
   max-height: 120px;
@@ -308,19 +327,24 @@ footer {
   align-items: center;
 }
 
-.table-content td p 
-{
-width: 100%;
-text-align: left; 
-margin: 0; 
-overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
+.table-book td{
+ 
+  width: 15%;
 }
 
-.table-content img 
+.table-content td p, .table-book td p 
+{
+  width: 100%;
+  text-align: left; 
+  margin: 0; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.table-content img, .table-book img 
 {
   height: 90px;
   width: 90px;
@@ -356,7 +380,7 @@ display: -webkit-box;
 
 .connection-form form
 {
- justify-content: space-between;
+  justify-content: space-between;
   width: 42%;
   display: flex;
   flex-direction: column;
@@ -382,7 +406,7 @@ form p
   width: 42%;
 }
 
-.connection-form input
+.connection-form input, .my-account-update input
 {
   height: 45px;
   border-radius: 4px;
@@ -469,8 +493,8 @@ form p
 {
   background-color: #00ac66;
   width: 15%;
-  align-self: center; /* Align the button to the start of the text */
-  padding: 15px 0; /* Add padding for better appearance */
+  align-self: center;
+  padding: 15px 0; 
   border: 1px solid transparent;
   color: white;
   cursor: pointer;
@@ -817,25 +841,25 @@ form p
 
 .my-account-details 
 {
-  border: 1px solid red;
   width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 70px;
+  min-height: 75vh;
 }
 
 .my-account-title
 {
-  border: 1px solid fuchsia;
   width: 80%;
   font-family: 'Playfair Display', sans-serif;
   font-weight: 400;
   font-size: 30px;
+  margin: 130px 0px 90px 0px;
 }
 
 .my-account-container 
 {
-  border: 1px solid blue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -843,23 +867,231 @@ form p
 
 .my-account-details-content
 {
-  border: 1px solid black;
   width: 47%;
-  border: 1px solid transparent;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  width: 25%;
   background-color: white;
   gap: 27px;
   align-items: center;
-  max-height: 900px;
+  max-height: 800px;
 }
 
 .my-account-update
 {
-  border: 1px solid green;
+  border: 1px solid transparent;
   width: 47%;
- 
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #ffffff;
 }
+
+.my-account-update h2 
+{
+  font-weight: 500;
+  font-size: 17px;
+  width: 60%;
+  margin-bottom: 50px;
+ 
+}
+
+.my-account-update form
+{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-account-update input
+{
+  height: 45px;
+  border-radius: 4px;
+  border: 1px solid #edeaea;
+  background-color: white;
+  padding-left: 10px;
+  margin-bottom: 39px;
+}
+
+.my-account-update button
+{
+ width: 47%;
+  height: 50px;
+  color: #00ac66;
+  background-color: #faf9f7;
+  border-radius: 8px;
+  border: 1px solid #00ac66;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modify-photo
+{
+  border-bottom: 1px solid #ababab;
+  margin-top: -25px;
+}
+.modify-link
+{
+  color: #ababab;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modify-book {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modify-book-link
+{
+  text-decoration: underline;
+  cursor: pointer;
+  color: black;
+  font-size: 15px;
+}
+
+.action-table button 
+{
+  color: red;
+ text-decoration: underline;
+  background-color: transparent;
+  border: transparent;
+  font-size: 15px;
+}
+.available {
+  color: green;
+}
+
+.not-available {
+  color: red;
+}
+
+.single-book-main-container
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.breadcrumb
+{
+  width:100%;
+  height: 50px;
+  align-self: center;
+  padding: 45px 0px 40px 100px;
+  background-color: #f5f3ef;
+}
+
+.single-book-detail
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.single-book-detail img
+{
+  width: 50%;
+  object-fit: cover;
+}
+
+.single-book-text
+{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 100px;
+}
+
+.single-book-text h3 
+{
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.single-book-author
+{
+  color: #767573;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.styled-hr
+{
+  width: 5%;
+  margin: 30px 0px;
+}
+
+.single-book-description
+{
+  font-size: 10px;
+}
+
+.single-book-txt-desc
+{
+  line-height: 1.3;
+  text-align: left;
+  height: 350px;
+  font-size: 15px;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.single-book-detail button 
+{
+  height: 55px;
+  border-radius: 10px;
+  background-color: #00ac66;
+  border: 1px solid #00ac66;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 60px 0px;
+}
+
+.sb-owner-name
+{
+  border-radius: 50px;
+  background-color: white;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px 10px 5px;
+  text-decoration: none;
+  color: #333;
+  width: auto;
+  max-width: 100%; /* Ensures the name doesn't overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 50px;
+  margin-top: 30px;
+}
+
+.sb-owner
+{
+  font-size: 10px;
+  justify-self: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.sb-owner-name img 
+{
+    width: 40px; /* Adjust the image size */
+    height: 40px; /* Ensure the image is a square */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+

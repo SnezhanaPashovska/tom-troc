@@ -2,6 +2,15 @@
 
 class BookManager extends AbstractEntityManager
 {
+
+  protected $db;
+
+  public function __construct()
+  {
+      $this->db = DBManager::getInstance()->getPDO();
+  }
+
+
   public function getAllBooks() :array 
   {
     $query = "SELECT b.*, u.username AS username 
@@ -32,8 +41,21 @@ class BookManager extends AbstractEntityManager
     //var_dump($book); // Debugging line to check the fetched user data
 
       if ($book) {
-      return new User($book);
+      return new Book($book);
   }
   return null;
+    }
+
+    public function searchBooksByTitle(string $title) : array
+    {
+        $query = "SELECT * FROM book WHERE title LIKE :title";
+        $statement = $this->db->prepare($query);
+        $statement->execute([':title' => '%' . $title . '%']);
+
+        $books = [];
+        while ($book = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $books[] = new Book($book);
+        }
+        return $books;
     }
 }

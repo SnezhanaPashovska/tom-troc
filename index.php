@@ -55,15 +55,18 @@ try {
       $userController->disconnectUser();
       break;
 
-      case 'ourBooks' : 
-      $bookController = new BookController();
-      $bookController->showBook();
-      break;
-
-      case 'bookDetail' : 
-      $bookController = new BookController();
-      $bookController->showBook();
-      break;
+      case 'ourBooks': 
+        $bookController = new BookController();
+        $bookController->showBooks();
+        break;
+    case 'bookDetail': 
+        $bookController = new BookController();
+        $bookController->showBookDetail();
+        break;
+    case 'searchBooks': 
+        $bookController = new BookController();
+        $bookController->searchBooks();
+        break;
 
     default: 
     throw new Exception("Unknown action: $action");

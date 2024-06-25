@@ -99,7 +99,7 @@ public function getId(): int {
     } elseif ($interval->m > 0) {
       $duration = $interval->m . "mois";
     } else {
-      $duration = $interval->d . "jours" . ($interval->d > 1 ? "s" : "");
+      $duration = $interval->d . "jour" . ($interval->d > 1 ? "s" : "");
     }
 
     return str_replace(['an', 'mois', 'jour'], [' an', ' mois', ' jour'], $duration);

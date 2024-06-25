@@ -4,7 +4,9 @@
             <h2 class="my-account-title">Mon compte</h2>
             <div class="my-account-details">
               <div class="my-account-details-content">
+                <div class="my-account-details-photo">
                 <img src="<?= $user->getImage() ?>" alt="Profile Picture">
+                </div>
                 <div class="modify-photo">
                     <label for="new_photo" class="modify-link">modifier</label>
                     <input type="file" id="new_photo" name="new_photo" accept="image/*" style="display: none;">
@@ -32,7 +34,6 @@
                       <button type="submit">Enregistrer</button>
                     </form>
                 </div>
-              
             </div>
             <div class="my-account-books">
                 <table class="my-account-books-table">
@@ -47,23 +48,29 @@
                     </tr>
                   </thead>
                   <tbody class="table-book">
+                  
                     <tr>
                       <td><img src="" alt=""></td>
                       <td><p></p></td>
                       <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
+                      <td><p>description</p></td>
+                      <td><p>
+                      <p class="<?php echo $book['availability'] ? 'available' : 'not-available'; ?>">
+                        <?php echo $book['availability'] ? 'Disponible' : 'Non disponible'; ?>
+                    </p>
+                      </p>
+                    </td>
                       <td class ="action-table">
                         <div class="modify-book">
-                          <label for="book-update" class="modify-link">Éditer</label>
-                          <input type="" id="book-update" name="book-update" accept="" style="display: none;">
+                            <a href="edit-book.html" class="modify-book-link">Éditer</a>
                         </div>
-                        <button type="delete">Supprimer</button>
-                      </td>
+                          <button type="delete">Supprimer</button>
+                        </div>
+                      </td>                     
                     </tr>
+
                   </tbody>
                 </table>
-
                 </div>
         </div>
     </section>
