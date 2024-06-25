@@ -87,22 +87,22 @@ public function getId(): int {
 
   public function getMembershipDuration(): string {
     if ($this->creationDate === null) {
-      return "Date de création non disponible";
+        return "Date de création non disponible";
     }
 
     $creationDate = new DateTime($this->creationDate);
     $currentDate = new DateTime();
     $interval = $currentDate->diff($creationDate);
 
-    if ($interval->y >0) {
-      $duration = $interval->y . "an" . ($interval->y > 1 ? "s" : "");
+    if ($interval->y > 0) {
+        $duration = $interval->y . " an" . ($interval->y > 1 ? "s" : "");
     } elseif ($interval->m > 0) {
-      $duration = $interval->m . "mois";
+        $duration = $interval->m . " mois";
     } else {
-      $duration = $interval->d . "jour" . ($interval->d > 1 ? "s" : "");
+        $duration = $interval->d . " jour" . ($interval->d > 1 ? "s" : "");
     }
 
-    return str_replace(['an', 'mois', 'jour'], [' an', ' mois', ' jour'], $duration);
-  }
-
+    return $duration;
 }
+}
+

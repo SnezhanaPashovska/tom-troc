@@ -10,18 +10,22 @@ class UserController {
         }
     }
 
-    public function showUser(): void {
+    public function showUser(): void 
+    {
         $this->checkIfUserIsConnected();
 
         $userManager = new UserManager();
         $user = $userManager->getUserById($_SESSION['idUser']);
 
-        if ($user) {
-            $view = new View("Profile");
-            $view->render("myAccount", ['user' => $user]);
-        } else {
-            echo "<p>User data not available.</p>"; 
+        if (!$user) {
+            throw new Exception("User not found.");
         }
+
+        $bookManager = new BookManager();
+        $userBooks = $bookManager->getUserBooks($user->getId()); // Assuming BookManager method getUserBooks exists
+
+        $view = new View("Profile");
+        $view->render("myAccount", ['user' => $user, 'userBooks' => $userBooks]);
     }
     
     public function displayConnectionForm() : void 
@@ -47,7 +51,7 @@ class UserController {
         }
 
         if (!password_verify($password, $user->getPassword())) {
-            throw new Exception("Le mot de passe est incorrect : $hash");
+            throw new Exception("Le mot de passe est incorrect ");
         }
 
         $_SESSION['user'] = $user;

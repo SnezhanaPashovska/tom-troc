@@ -1,20 +1,16 @@
-<?php 
-$userManager = new UserManager();
-$user = null;
 
-?>
 <section class="public-profile account">
 
 <div class="container-profile-public">
   <div class="profile-public-info">
     <div class="profile-public-photo">
-      <img src="<?= htmlspecialchars($user->getImage()) ?>" alt="User Image">
+      <img src="<?= ($user->getImage()) ?>" alt="User Image">
     </div>
     <div class="profile-public-name">
       <p><?= $user->getUserName()  ?></p>
     </div>
     <div class="profile-public-date">
-      <p>Membre depuis <?= htmlspecialchars($user->getMembershipDuration()) ?> </p>
+      <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
     </div>
     <div class="profile-public-library">
       <p class="profile-public-library-biblioteque">BIBLIOTHEQUE</p>
@@ -36,12 +32,14 @@ $user = null;
         </tr>
       </thead>
       <tbody class="table-content">
+      <?php foreach ($userBooks as $book): ?>
         <tr>
-          <td><img src="" alt=""></td>
-          <td><p></p></td>
-          <td><p></p></td>
-          <td><p></p></td>
+          <td><img src="<?= $book->getImage() ?>" alt=""></td>
+          <td><p><?= $book->getTitle() ?></p></td>
+          <td><p><?= $book->getAuthor() ?></p></td>
+          <td><p class="book-description"><?= $book->getDescription(100) ?></p></td>
         </tr>
+        <?php endforeach; ?>
       </tbody>
     </table>
   </div>

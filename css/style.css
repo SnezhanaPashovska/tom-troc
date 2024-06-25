@@ -194,6 +194,7 @@ footer {
   align-items: center;
   color: white;
   max-height: 900px;
+  border: 1px solid;
 }
 
 .profile-public-date p, .my-account-date p
@@ -299,8 +300,8 @@ footer {
 
 .table-book tr
 { 
-  padding: 10px 60px 0px 60px;
-  width: 95%;
+  padding: 10px 100px 0px 90px;
+  width: 100%;
   align-self: center;
   justify-content: space-between;
 }
@@ -343,6 +344,30 @@ footer {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
+
+.table-book td .available  {
+  border: 1px solid #6dc4a1;
+  width: 60%;
+  border-radius: 10px;
+  color: white;
+  background-color: #6dc4a1;
+  font-size: 10px;
+  text-align: center;
+  padding: 4px 0px;
+}
+
+.table-book td .not-available
+{
+  border: 1px solid #c46d6d;
+  width: 60%;
+  border-radius: 10px;
+  color: white;
+  background-color: #c46d6d;
+  font-size: 10px;
+  text-align: center;
+  padding: 4px 0px;
+}
+
 
 .table-content img, .table-book img 
 {
@@ -957,18 +982,11 @@ form p
 
 .action-table button 
 {
-  color: red;
+  color: #c65b5b;
  text-decoration: underline;
   background-color: transparent;
   border: transparent;
   font-size: 15px;
-}
-.available {
-  color: green;
-}
-
-.not-available {
-  color: red;
 }
 
 .single-book-main-container
@@ -1091,6 +1109,11 @@ form p
     height: 40px; /* Ensure the image is a square */
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.book-description 
+{
+  font-style: italic;
 }
 
 

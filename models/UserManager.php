@@ -58,23 +58,28 @@ class UserManager extends AbstractEntityManager
       }
     }
 
-  public function getUserById(int $id = null) : ?User
-{
-  if ($id === null) {
-      return null; 
-  }
+    public function getUserById(int $id): ?User
+    {
+      
+        $query = "SELECT * FROM user WHERE id = :id";
+        $statement = $this->db->prepare($query);
+        $statement->execute([':id' => $id]);
 
-  $query = "SELECT * FROM user WHERE id = :id";
-  $statement = $this->db->prepare($query);
-  $statement->execute([':id' => $id]);
+        $userData = $statement->fetch(PDO::FETCH_ASSOC);
 
-  $user = $statement->fetch(PDO::FETCH_ASSOC);
-    //var_dump($user); // Debugging line to check the fetched user data
+        if ($userData) {
+            $user = new User();
+            $user->setId($userData['id']);
+            $user->setUsername($userData['username']);
+            $user->setEmail($userData['email']);
+            $user->setPassword($userData['password']);
+            $user->setImage($userData['image'] ?? '');
+            $user->setCreationDate($userData['creation_date']);
 
-  if ($user) {
-      return new User($user);
-  }
-  return null;
-}
+            return $user;
+        }
+
+        return null;
+    }
     
 }

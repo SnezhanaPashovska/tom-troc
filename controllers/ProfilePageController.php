@@ -11,7 +11,22 @@ class ProfilePageController
 
   public function showProfile() :void 
   {
-    $view = new View("Profile");
-    $view->render("profilePublic");
+    $userManager = new UserManager();
+        
+        // Example: Fetch user data by ID
+        $userId = Utils::request("id"); // Assuming 'id' is passed in the URL
+        $user = $userManager->getUserById($userId);
+
+        if (!$user) {
+            // Handle case where user is not found
+            echo "<p>User not found.</p>";
+            return;
+        }
+
+        $bookManager = new BookManager();
+    $userBooks = $bookManager->getUserBooks($userId);
+
+        $view = new View("Profile");
+        $view->render("profilePublic", ['user' => $user, 'userBooks' => $userBooks]);
+    }
   }
-}

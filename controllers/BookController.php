@@ -8,7 +8,7 @@ class BookController
     $id = Utils::request("id", -1);
 
     $bookManager = new BookManager();
-    $book = $bookManager->getAllBooks($id);
+    $book = $bookManager->getAllBooks();
 
     if (!$book) {
       throw new Exception("Le livre demandé n'existe pas.");
@@ -22,26 +22,39 @@ class BookController
   }
 }
 
-public function showBookDetail() :void
-{
+public function showBookDetail(): void
+    {
+        try {
+            $bookId = Utils::request("id", -1);
 
-  try {
-    $id = Utils::request("id", -1);
+            $bookManager = new BookManager();
+            $book = $bookManager->getBookById($bookId);
 
-    $bookManager = new BookManager();
-    $book = $bookManager->getBookById($id);
+            var_dump($bookId); // Check $bookId
+        var_dump($book->getIdUser()); // Check $book->getIdUser()
 
-    if (!$book) {
-      throw new Exception("Le livre demandé n'existe pas.");
+            if (!$book) {
+                throw new Exception("Le livre demandé n'existe pas.");
+            }
+
+            $userManager = new UserManager();
+            $user = $userManager->getUserById($book->getIdUser()); // Fetch user using userId
+
+            //var_dump($user);
+
+            if (!$user) {
+                throw new Exception("Utilisateur non trouvé.");
+            }
+
+            $view = new View("bookDetail");
+            $view->render("bookDetail", ['book' => $book, 'user' => $user]);
+
+        } catch (Exception $e) {
+            $view = new View("Error");
+            $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
+        }
     }
-    $view = new View("bookDetail");
-    $view->render("bookDetail", ['books' => $book]);
-  } catch (Exception $e) {
 
-    $view = new View("Error");
-    $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
-  }
-}
 
 public function searchBooks() : void 
 {

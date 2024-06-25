@@ -12,10 +12,10 @@
                     <input type="file" id="new_photo" name="new_photo" accept="image/*" style="display: none;">
                 </div>
                 <div class="my-account-name">
-                  <p><?= htmlspecialchars($user->getUsername()) ?></p>
+                  <p><?= $user->getUsername() ?></p>
                 </div>
                 <div class="my-account-date">
-                  <p>Membre depuis <?= htmlspecialchars($user->getMembershipDuration()) ?> </p>
+                  <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
                 </div>
                 <div class="my-account-library">
                   <p class="my-account-library-biblioteque">BIBLIOTHEQUE</p>
@@ -48,17 +48,17 @@
                     </tr>
                   </thead>
                   <tbody class="table-book">
-                  
+                  <?php foreach ($userBooks as $book): ?>
                     <tr>
-                      <td><img src="" alt=""></td>
-                      <td><p></p></td>
-                      <td><p></p></td>
-                      <td><p>description</p></td>
-                      <td><p>
-                      <p class="<?php echo $book['availability'] ? 'available' : 'not-available'; ?>">
-                        <?php echo $book['availability'] ? 'Disponible' : 'Non disponible'; ?>
+                      <td><img src="<?= $book->getImage() ?>" alt=""></td>
+                      <td><p><?= $book->getTitle() ?></p></td>
+                      <td><p><?= $book->getAuthor() ?></p></td>
+                      <td><p><?= $book->getDescription(100) ?></p></td>
+                      <td>
+                      <p class="<?= $book->isAvailable() ? 'available' : 'not-available'; ?>">
+                      <?= $book->isAvailable() ? 'disponible' : 'non dispo.'; ?>
                     </p>
-                      </p>
+                      
                     </td>
                       <td class ="action-table">
                         <div class="modify-book">
@@ -68,7 +68,7 @@
                         </div>
                       </td>                     
                     </tr>
-
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
                 </div>
