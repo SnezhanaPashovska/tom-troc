@@ -24,9 +24,10 @@ class ProfilePageController
         }
 
         $bookManager = new BookManager();
-    $userBooks = $bookManager->getUserBooks($userId);
+        $userBooks = $bookManager->getUserBooks($userId);
+        $totalBooks = $bookManager->countUserBooks($userId);
 
         $view = new View("Profile");
-        $view->render("profilePublic", ['user' => $user, 'userBooks' => $userBooks]);
+        $view->render("profilePublic", ['user' => $user, 'userBooks' => $userBooks, 'totalBooks' => $totalBooks]);
     }
   }

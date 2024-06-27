@@ -19,7 +19,7 @@
                 </div>
                 <div class="my-account-library">
                   <p class="my-account-library-biblioteque">BIBLIOTHEQUE</p>
-                  <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"> livres</p>
+                  <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
                 </div>
                 </div>
                 <div class="my-account-update">
@@ -62,7 +62,7 @@
                     </td>
                       <td class ="action-table">
                         <div class="modify-book">
-                            <a href="edit-book.html" class="modify-book-link">Éditer</a>
+                            <a href="index.php?action=editBook" class="modify-book-link">Éditer</a>
                         </div>
                           <button type="delete">Supprimer</button>
                         </div>

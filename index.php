@@ -67,6 +67,10 @@ try {
         $bookController = new BookController();
         $bookController->searchBooks();
         break;
+    case 'editBook' : 
+      $bookController = new BookController();
+      $bookController->editBook();
+      break;
 
     default: 
     throw new Exception("Unknown action: $action");

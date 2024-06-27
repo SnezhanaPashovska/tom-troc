@@ -22,10 +22,11 @@ class UserController {
         }
 
         $bookManager = new BookManager();
-        $userBooks = $bookManager->getUserBooks($user->getId()); // Assuming BookManager method getUserBooks exists
+        $userBooks = $bookManager->getUserBooks($user->getId()); 
+        $totalBooks = $bookManager->countUserBooks($user->getId());
 
         $view = new View("Profile");
-        $view->render("myAccount", ['user' => $user, 'userBooks' => $userBooks]);
+        $view->render("myAccount", ['user' => $user, 'userBooks' => $userBooks, 'totalBooks' => $totalBooks]);
     }
     
     public function displayConnectionForm() : void 
