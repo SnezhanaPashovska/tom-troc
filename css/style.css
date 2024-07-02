@@ -177,6 +177,8 @@ footer {
 
 .my-account-books {
   width: 80%;
+  margin-bottom: 50px;
+  min-height: 500px;
 }
 
 .profile-public-uploads-table,
@@ -190,6 +192,7 @@ footer {
   max-height: 900px;
   border: 1px solid;
 }
+
 
 .profile-public-date p,
 .my-account-date p {
@@ -913,6 +916,7 @@ form p {
   background-color: transparent;
   border: transparent;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .single-book-main-container {
@@ -1168,4 +1172,20 @@ form p {
 .edit-photo-link {
   font-size: 13px;
   cursor: pointer;
+}
+
+.add-book
+{
+  align-self: self-end;
+  margin: 0px 155px 10px 0px;
+}
+
+.add-book button 
+{
+  background-color: #faf9f7;
+  color: #00ac66;
+  padding: 7px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #00ac66;
 }
