@@ -157,8 +157,7 @@ footer {
   object-fit: cover;
 }
 
-.profile-public-name,
-.my-account-name {
+.profile-public-name{
   border-top: 1px solid #edeaea;
   width: 80%;
   text-align: center;
@@ -200,8 +199,13 @@ footer {
   color: gray;
 }
 
-.profile-public-library,
-.my-account-library {
+.my-account-date p {
+  align-self: center;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-public-library {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -211,8 +215,8 @@ footer {
   gap: 9px;
 }
 
-.profile-public-library-biblioteque,
-.my-account-library-biblioteque {
+.profile-public-library-biblioteque
+{
   font-size: 10px;
   font-weight: 600;
 }
@@ -224,11 +228,12 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  color: black;
 }
 
 .profile-public-library-livres img,
 .my-account-library-livres img {
-  width: 3%;
+  width: 4%;
   border-radius: 0;
   object-fit: contain;
   font-size: 14px;
@@ -427,6 +432,7 @@ form p {
   padding-left: 10px;
   margin-bottom: 45px;
 }
+
 
 .connection-form button {
   height: 58px;
@@ -831,8 +837,14 @@ form p {
   align-items: center;
 }
 
+.update-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
 .my-account-details-content {
-  width: 47%;
+  width: 48%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -844,12 +856,12 @@ form p {
 
 .my-account-update {
   border: 1px solid transparent;
-  width: 47%;
+  width: 48%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #ffffff;
 }
 
@@ -861,7 +873,7 @@ form p {
 }
 
 .my-account-update form {
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -873,10 +885,11 @@ form p {
   background-color: white;
   padding-left: 10px;
   margin-bottom: 39px;
+  width: 60%;
 }
 
 .my-account-update button {
-  width: 47%;
+  width: 25%;
   height: 50px;
   color: #00ac66;
   background-color: #faf9f7;
@@ -884,16 +897,34 @@ form p {
   border: 1px solid #00ac66;
   font-size: 15px;
   cursor: pointer;
+  align-self: flex-start;
+  margin-left: 120px;
+}
+
+.my-account-update p {
+  width: 60%;
+  margin-bottom: 5px;
+  color: #ababab;
+  font-size: 14px;
 }
 
 .modify-photo {
   border-bottom: 1px solid #ababab;
-  margin-top: -25px;
+  margin-top: -20px;
+  text-align: center;
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 120px;
+  margin-bottom: 20px;
 }
+
 .modify-link {
   color: #ababab;
   font-size: 13px;
   cursor: pointer;
+  align-self: center;
 }
 
 .modify-book {
@@ -910,7 +941,7 @@ form p {
   font-size: 15px;
 }
 
-.action-table button {
+.delete-book-link {
   color: #c65b5b;
   text-decoration: underline;
   background-color: transparent;
@@ -1082,19 +1113,19 @@ form p {
   width: 50%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 200px;
+  align-items: center;
 }
 
 .edit-book-photo img {
-  width: 70%;
-  height: 450px;
+  width: 480px;
+  height: 480px;
   align-self: center;
   object-fit: cover;
+  align-items: center;
 }
 
 .edit-book-photo p {
-  width: 70%;
-  align-self: center;
+  width: 100%;
   margin: 50px 0px 10px 0px;
   color: #767573;
 }
@@ -1167,6 +1198,8 @@ form p {
   font-size: 14px;
   margin: 13px 100px 0px 0px;
   align-self: self-end;
+  text-align: right;
+  width: 100%;
 }
 
 .edit-photo-link {
@@ -1188,4 +1221,33 @@ form p {
   border-radius: 10px;
   cursor: pointer;
   border: 1px solid #00ac66;
+}
+
+.my-account-name {
+  border-top: 1px solid #edeaea;
+  text-align: center;
+  margin: 30px 0px 20px 0px;
+  padding: 40px 0px 0px 0px;
+  font-family: "Playfair Display", sans-serif !important;
+  width: 100%;
+}
+
+.my-account-name p {
+  font-size: 27px;
+  color: black;
+}
+
+.my-account-library {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-account-library-biblioteque {
+  color: black;
+  font-size: 9px;
+  font-weight: 500;
+  text-align: center;
+  align-self: center;
+  width: 50%;
+  margin-bottom: 10px;
 }

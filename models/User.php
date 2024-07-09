@@ -7,87 +7,93 @@ class User extends AbstractEntity
   private string $email;
   private string $password;
   private ?string $image = null;
-  private bool $isAdmin = false; 
+  private bool $isAdmin = false;
   private ?string $creationDate = null;
 
 
-public function setId(int $id): void {
+  public function setId(int $id): void
+  {
     $this->id = $id;
-}
+  }
 
-public function getId(): int {
+  public function getId(): int
+  {
     return $this->id;
-}
+  }
 
-  public function setUsername(string $username) : void 
+  public function setUsername(string $username): void
   {
     $this->username = $username;
   }
 
-  public function getUsername() : string 
+  public function getUsername(): string
   {
     return $this->username;
   }
 
-  public function setEmail(string $email) : void 
+  public function setEmail(string $email): void
   {
     $this->email = $email;
   }
 
-  public function getEmail() : string 
+  public function getEmail(): string
   {
     return $this->email;
   }
 
-  public function setPassword(string $password) : void 
+  public function setPassword(string $password): void
   {
     $this->password = $password;
   }
 
-  public function getPassword() : string 
+  public function getPassword(): string
   {
     return $this->password;
   }
 
-  public function setCreationDate(string|DateTime $creationDate, string $format = 'Y-m-d H:i:s') : void 
+  public function setCreationDate(string|DateTime $creationDate, string $format = 'Y-m-d H:i:s'): void
   {
     if ($creationDate instanceof DateTime) {
-        $this->creationDate = $creationDate->format($format);
+      $this->creationDate = $creationDate->format($format);
     } elseif (is_string($creationDate)) {
+      // Only set the creation date if it's not already set (prevent overwriting)
+      if (!$this->creationDate) {
         $this->creationDate = $creationDate;
+      }
     } else {
-        $this->creationDate = null;
+      $this->creationDate = null;
     }
-}
+  }
 
-  public function getCreationDate() : ?string 
-    {
-      return $this->creationDate;
-    }
+  public function getCreationDate(): ?string
+  {
+    return $this->creationDate;
+  }
 
-  public function setImage(?string $image) : void 
+  public function setImage(?string $image): void
   {
     $this->image = $image;
   }
 
-  public function getImage() : ?string 
+  public function getImage(): ?string
   {
     return $this->image;
   }
 
-  public function setIsAdmin(bool $isAdmin) : void 
+  public function setIsAdmin(bool $isAdmin): void
   {
     $this->isAdmin = $isAdmin;
   }
 
-  public function isAdmin() : bool 
+  public function isAdmin(): bool
   {
     return $this->isAdmin;
   }
 
-  public function getMembershipDuration(): string {
+  public function getMembershipDuration(): string
+  {
     if ($this->creationDate === null) {
-        return "Date de création non disponible";
+      return "Date de création non disponible";
     }
 
     $creationDate = new DateTime($this->creationDate);
@@ -95,14 +101,13 @@ public function getId(): int {
     $interval = $currentDate->diff($creationDate);
 
     if ($interval->y > 0) {
-        $duration = $interval->y . " an" . ($interval->y > 1 ? "s" : "");
+      $duration = $interval->y . " an" . ($interval->y > 1 ? "s" : "");
     } elseif ($interval->m > 0) {
-        $duration = $interval->m . " mois";
+      $duration = $interval->m . " mois";
     } else {
-        $duration = $interval->d . " jour" . ($interval->d > 1 ? "s" : "");
+      $duration = $interval->d . " jour" . ($interval->d > 1 ? "s" : "");
     }
 
     return $duration;
+  }
 }
-}
-

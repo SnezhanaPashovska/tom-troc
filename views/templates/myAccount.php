@@ -6,11 +6,14 @@
         <div class="my-account-details-photo">
           <img src="<?= $user->getImage() ?>" alt="Profile Picture">
         </div>
-        <div class="modify-photo">
-          <label for="new_photo" class="modify-link">modifier</label>
-          <input type="file" id="new_photo" name="new_photo" accept="image/*" style="display: none;">
-        </div>
+
+        <form action="index.php?action=updateUser" method="post" enctype="multipart/form-data" class="update-form">
+          <div class="modify-photo">
+            <label for="new_photo" class="modify-link">modifier</label>
+            <input type="file" id="new_photo" name="new_photo" accept="image/*" style="display: none;">
+          </div>
         
+
         <div class="my-account-name">
           <p><?= $user->getUsername() ?></p>
         </div>
@@ -24,7 +27,7 @@
       </div>
       <div class="my-account-update">
         <h2>Vos informations personnelles</h2>
-        <form action="index.php?action=updateUser" method="post" enctype="multipart/form-data">
+        
           <p>Adresse email</p>
           <input type="email" name="email" placeholder="" required>
           <p>Mot de passe</p>
@@ -35,6 +38,8 @@
         </form>
       </div>
     </div>
+
+
     <div class="add-book">
       <button>Ajouter un livre</button>
     </div>
@@ -71,9 +76,9 @@
               </td>
               <td class="action-table">
                 <div class="modify-book">
-                  <a href="index.php?action=editBook" class="modify-book-link">Éditer</a>
+                <a href="index.php?action=editBook&id=<?= $book->getId() ?>" class="modify-book-link">Éditer</a>
                 </div>
-                <button type="delete">Supprimer</button>
+                <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" class="delete-book-link" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
     </div>
     </td>
     </tr>

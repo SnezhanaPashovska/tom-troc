@@ -17,72 +17,85 @@ try {
       $profilePageController->showHome();
       break;
 
-    case 'user': 
+    case 'user':
       $userController = new UserController();
       $userController->showUser();
       break;
 
-      case 'profilePublic':
+    case 'profilePublic':
       $profilePageController = new ProfilePageController();
       $profilePageController->showProfile();
       break;
 
-      case 'myAccount':
+    case 'myAccount':
       $userController = new UserController();
       $userController->showUser();
-        break;
+      break;
 
     case 'connectUser':
       $userController = new UserController();
       $userController->connectUser();
       break;
 
-    case 'connectionForm': 
+    case 'connectionForm':
       $userController = new UserController();
       $userController->displayConnectionForm();
       break;
-    case 'subscriptionForm': 
+
+    case 'subscriptionForm':
       $userController = new UserController();
       $userController->subscribeUser();
       break;
+      
     case 'subscribeUser':
       $userController = new UserController();
       $userController->subscribeUser();
       break;
 
-      case 'disconnect':
+    case 'disconnect':
       $userController = new UserController();
       $userController->disconnectUser();
       break;
 
-      case 'ourBooks': 
-        $bookController = new BookController();
-        $bookController->showBooks();
-        break;
-    case 'bookDetail': 
-        $bookController = new BookController();
-        $bookController->showBookDetail();
-        break;
-    case 'searchBooks': 
-        $bookController = new BookController();
-        $bookController->searchBooks();
-        break;
-    case 'editBook' : 
+    case 'ourBooks':
+      $bookController = new BookController();
+      $bookController->showBooks();
+      break;
+
+    case 'bookDetail':
+      $bookController = new BookController();
+      $bookController->showBookDetail();
+      break;
+
+    case 'searchBooks':
+      $bookController = new BookController();
+      $bookController->searchBooks();
+      break;
+
+    case 'editBook':
       $bookController = new BookController();
       $bookController->editBook();
       break;
 
-    case 'updateUser' : 
+    case 'bookUpdate':
+      $controller = new BookController();
+      $controller->editBook();
+      break;
+
+    case 'deleteBook':
+      $controller = new BookController();
+      $controller->deleteBook();
+      break;
+
+    case 'updateUser':
       $userController = new UserController();
       $userController->updateUser();
       break;
 
-    default: 
-    throw new Exception("Unknown action: $action");
+    default:
+      throw new Exception("Unknown action: $action");
   }
- 
 } catch (Exception $e) {
-    $errorView = new View('Erreur');
-    $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
+  $errorView = new View('Erreur');
+  $errorView->render('errorPage', ['errorMessage' => $e->getMessage()]);
 }
-
