@@ -46,7 +46,7 @@ try {
       $userController = new UserController();
       $userController->subscribeUser();
       break;
-      
+
     case 'subscribeUser':
       $userController = new UserController();
       $userController->subscribeUser();
@@ -91,6 +91,12 @@ try {
       $userController = new UserController();
       $userController->updateUser();
       break;
+
+    case 'messages':
+      $messageController = new MessageController();
+      $messageController->showMessages();
+      break;
+
 
     default:
       throw new Exception("Unknown action: $action");

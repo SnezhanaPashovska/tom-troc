@@ -42,7 +42,7 @@ class UserController
         $password = htmlspecialchars(Utils::request("password"));
 
         if (empty($email) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
         $userManager = new UserManager();

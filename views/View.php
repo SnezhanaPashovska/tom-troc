@@ -1,6 +1,6 @@
 <?php
 
-class View 
+class View
 {
   private $template;
   private $params = [];
@@ -10,7 +10,7 @@ class View
     $this->template = $template;
   }
 
-  public function render(string $viewName, array $params = []) : void 
+  public function render(string $viewName, array $params = []): void
   {
     $viewPath = $this->buildViewPath($viewName);
     //echo "View path: $viewPath";
@@ -21,7 +21,7 @@ class View
     echo ob_get_clean();
   }
 
-  private function _renderViewFromTemplate(string $viewPath, array $params = []) : string 
+  private function _renderViewFromTemplate(string $viewPath, array $params = []): string
   {
     if (file_exists($viewPath)) {
       extract($params);
@@ -33,7 +33,7 @@ class View
     }
   }
 
-  private function buildViewPath(string $viewName) : string 
+  private function buildViewPath(string $viewName): string
   {
     return TEMPLATE_VIEW_PATH . $viewName . '.php';
   }

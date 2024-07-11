@@ -16,7 +16,7 @@
         <p class="profile-public-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
       </div>
       <div class="profile-public-button">
-        <button>Écrire un message</button>
+        <a href="index.php?action=messages" class="modify-book-link">Écrire un message</a>
       </div>
     </div>
 

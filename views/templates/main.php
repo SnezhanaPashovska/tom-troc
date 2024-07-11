@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <title>Tom Troc</title>
 </head>
+
 <body>
   <header class="header">
     <div class="header-logo">
@@ -31,17 +32,17 @@
           <?php if (isset($_SESSION['user'])) : ?>
             <li><a href="index.php?action=myAccount"><img src="images/Icon mon compte.svg" alt="Icon mon compte">Mon compte</a></li>
             <li><a href="index.php?action=disconnect">Déconnexion</a></li>
-        <?php else : ?>
+          <?php else : ?>
             <li><a href="index.php?action=connectionForm"><img src="images/Icon mon compte.svg" alt="Icon mon compte">Mon compte</a></li>
             <li><a href="index.php?action=connectionForm">Connexion</a></li>
-        <?php endif; ?>
+          <?php endif; ?>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-  <?= $content; /* Ici est affiché le contenu réel de la page. */ ?>
+    <?= $content; /* Ici est affiché le contenu réel de la page. */ ?>
   </main>
 
   <footer>
@@ -54,6 +55,7 @@
       <img src="/images/logo_tom_troc_simple.png" alt="Logo TT" class="logo-footer">
     </nav>
   </footer>
-  
+
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <?php
 
-abstract class AbstractEntityManager {
+abstract class AbstractEntityManager
+{
 
   protected $db;
 

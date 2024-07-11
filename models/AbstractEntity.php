@@ -1,6 +1,6 @@
 <?php
 
-abstract class AbstractEntity 
+abstract class AbstractEntity
 {
   protected int $id = -1;
 
@@ -11,7 +11,7 @@ abstract class AbstractEntity
     }
   }
 
-  protected function hydrate(array $data) : void 
+  protected function hydrate(array $data): void
   {
     foreach ($data as $key => $value) {
       $method = 'set' . str_replace('_', '', ucwords($key, '_'));
@@ -23,12 +23,12 @@ abstract class AbstractEntity
     }
   }
 
-  public function setId(int $id) : void 
+  public function setId(int $id): void
   {
     $this->id = $id;
   }
 
-  public function getId() : int 
+  public function getId(): int
   {
     return $this->id;
   }

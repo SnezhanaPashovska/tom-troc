@@ -12,29 +12,29 @@
             <label for="new_photo" class="modify-link">modifier</label>
             <input type="file" id="new_photo" name="new_photo" accept="image/*" style="display: none;">
           </div>
-        
 
-        <div class="my-account-name">
-          <p><?= $user->getUsername() ?></p>
-        </div>
-        <div class="my-account-date">
-          <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
-        </div>
-        <div class="my-account-library">
-          <p class="my-account-library-biblioteque">BIBLIOTHEQUE</p>
-          <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
-        </div>
+
+          <div class="my-account-name">
+            <p><?= $user->getUsername() ?></p>
+          </div>
+          <div class="my-account-date">
+            <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
+          </div>
+          <div class="my-account-library">
+            <p class="my-account-library-biblioteque">BIBLIOTHEQUE</p>
+            <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
+          </div>
       </div>
       <div class="my-account-update">
         <h2>Vos informations personnelles</h2>
-        
-          <p>Adresse email</p>
-          <input type="email" name="email" placeholder="" required>
-          <p>Mot de passe</p>
-          <input type="password" name="password" placeholder="" required>
-          <p>Pseudo</p>
-          <input type="username" name="username" placeholder="" required>
-          <button type="submit">Enregistrer</button>
+
+        <p>Adresse email</p>
+        <input type="email" name="email" placeholder="" required>
+        <p>Mot de passe</p>
+        <input type="password" name="password" placeholder="" required>
+        <p>Pseudo</p>
+        <input type="username" name="username" placeholder="" required>
+        <button type="submit">Enregistrer</button>
         </form>
       </div>
     </div>
@@ -76,7 +76,7 @@
               </td>
               <td class="action-table">
                 <div class="modify-book">
-                <a href="index.php?action=editBook&id=<?= $book->getId() ?>" class="modify-book-link">Éditer</a>
+                  <a href="index.php?action=editBook&id=<?= $book->getId() ?>" class="modify-book-link">Éditer</a>
                 </div>
                 <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" class="delete-book-link" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
     </div>
