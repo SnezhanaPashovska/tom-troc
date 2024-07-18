@@ -164,7 +164,11 @@ footer {
   margin-top: 30px;
   padding: 40px 0px 0px 0px;
   font-family: "Playfair Display", sans-serif !important;
+}
+
+.profile-public-name h1 {
   font-size: 27px;
+  font-weight: 400;
 }
 
 .profile-public-uploads,
@@ -324,12 +328,9 @@ footer {
   max-height: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-align: center;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .table-book td {
@@ -344,6 +345,7 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  line-clamp: 4;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }
@@ -357,6 +359,10 @@ footer {
   font-size: 10px;
   text-align: center;
   padding: 4px 0px;
+}
+
+.book-description {
+  font-style: italic;
 }
 
 .table-book td .not-available {
@@ -392,7 +398,7 @@ footer {
   padding-top: 130px;
 }
 
-.connection-form h2 {
+.connection-form h1 {
   font-family: "Playfair Display";
   font-weight: 500;
   font-size: 35px;
@@ -408,16 +414,18 @@ footer {
   margin-bottom: 30px;
 }
 
-form p {
+form label {
   font-size: 15px;
   color: #ababab;
   margin-bottom: 5px;
 }
 
-.connection-form p a {
+.connection-form a {
   text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.2em;
 }
-.connection-form p a:hover {
+.connection-form a:hover {
   text-decoration: none;
 }
 
@@ -473,7 +481,7 @@ form p {
   text-align: center;
 }
 
-.home-main-text h2 {
+.home-main-text h1 {
   width: 34%;
   font-family: "Playfair Display", sans-serif;
   font-size: 29px;
@@ -501,7 +509,7 @@ form p {
   object-fit: cover;
 }
 
-.home-main-text button {
+.home-main-text a {
   background-color: #00ac66;
   width: 15%;
   align-self: center;
@@ -511,6 +519,10 @@ form p {
   cursor: pointer;
   margin-right: 160px;
   border-radius: 10px;
+}
+
+.home-main-text a:hover {
+  background-color: #006d41;
 }
 
 .home-main-image p {
@@ -532,14 +544,14 @@ form p {
 .home-last-books-title {
   margin-top: 100px;
   font-family: "Playfair Display", sans-serif;
-  font-size: 23px;
+  font-size: 21px;
 }
 
-.home-last-books-title h3 {
+.home-last-books-title h2 {
   font-weight: 500;
 }
 
-.home-last-books button {
+.home-last-books a {
   border: 1px solid transparent;
   background-color: #00ac66;
   padding: 15px 35px;
@@ -547,6 +559,10 @@ form p {
   color: white;
   margin-bottom: 100px;
   cursor: pointer;
+}
+
+.home-last-books a:hover {
+  background-color: #006d41;
 }
 
 .home-last-books-list {
@@ -636,7 +652,7 @@ form p {
   border-radius: 10px;
 }
 
-.home-details-button button {
+.home-details-button a {
   padding: 17px 35px;
   border: 2px solid #00ac66;
   color: #00ac66;
@@ -644,6 +660,12 @@ form p {
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.home-details-button a:hover {
+  border: 2px solid #00ac66;
+  color: white;
+  background-color: #00ac66;
 }
 
 .home-banner img {
@@ -710,7 +732,7 @@ form p {
   font-weight: 400;
 }
 
-.our-books-title h2 {
+.our-books-title h1 {
   font-weight: 500;
   font-size: 31px;
 }
@@ -741,10 +763,22 @@ form p {
   left: 10px;
   width: 20px;
   height: 20px;
+  margin-top: 5px;
 }
 
 .search-container input::placeholder {
   color: #ababab;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .books-list {
@@ -784,11 +818,14 @@ form p {
   height: 60%;
 }
 
-.books-list-details .book-card h3 {
+.books-list-details .book-card h2 {
   font-size: 16px;
   font-weight: 500;
   width: 80%;
   margin: 0px 0px 10px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .books-list-details .book-card p {
@@ -903,7 +940,7 @@ form p {
   margin-left: 120px;
 }
 
-.my-account-update p {
+.my-account-update label {
   width: 60%;
   margin-bottom: 5px;
   color: #ababab;
@@ -927,6 +964,7 @@ form p {
   font-size: 13px;
   cursor: pointer;
   align-self: center;
+  margin-bottom: -2px;
 }
 
 .modify-book {
@@ -941,6 +979,7 @@ form p {
   cursor: pointer;
   color: black;
   font-size: 15px;
+  text-underline-offset: 0.1em;
 }
 
 .delete-book-link {
@@ -950,6 +989,7 @@ form p {
   border: transparent;
   font-size: 15px;
   cursor: pointer;
+  text-underline-offset: 0.1em;
 }
 
 .single-book-main-container {
@@ -992,7 +1032,7 @@ form p {
   padding: 60px 100px;
 }
 
-.single-book-text h3 {
+.single-book-text h1 {
   font-family: "Playfair Display", sans-serif;
   font-weight: 400;
   font-size: 30px;
@@ -1023,7 +1063,7 @@ form p {
   margin-top: 15px;
 }
 
-.single-book-detail button {
+.single-book-envoyer {
   height: 55px;
   border-radius: 10px;
   background-color: #00ac66;
@@ -1033,6 +1073,8 @@ form p {
   font-size: 15px;
   cursor: pointer;
   margin: 60px 0px;
+  text-align: center;
+  line-height: 55px;
 }
 
 .sb-owner-name {
@@ -1142,14 +1184,13 @@ form p {
   padding: 30px 0px 200px 0px;
 }
 
-.edit-form p {
+.edit-form label {
   color: #767573;
   margin: 29px 0px 10px 0px;
   width: 80%;
   font-size: 15px;
 }
 
-.edit-form input[type="text"],
 .edit-form textarea,
 .edit-form select {
   width: 80%;
@@ -1159,6 +1200,7 @@ form p {
   border-radius: 4px;
   font-size: 16px;
   background-color: #edf2f6;
+  resize: none;
 }
 
 .edit-form input {
@@ -1202,11 +1244,14 @@ form p {
   align-self: self-end;
   text-align: right;
   width: 100%;
+  text-underline-offset: 0.1em;
+  color: black;
 }
 
 .edit-photo-link {
   font-size: 13px;
   cursor: pointer;
+  color: black;
 }
 
 .add-book {
@@ -1232,9 +1277,10 @@ form p {
   width: 100%;
 }
 
-.my-account-name p {
+.my-account-name h2 {
   font-size: 27px;
   color: black;
+  font-weight: 400;
 }
 
 .my-account-library {
@@ -1248,27 +1294,33 @@ form p {
   font-weight: 500;
   width: 50%;
   margin-bottom: 10px;
+  align-self: center;
+  text-align: center;
 }
 
 section.messages {
   display: flex;
   justify-content: center;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 .messages-main-container {
   display: flex;
-  overflow: hidden;
   width: 100%;
   height: 100vh;
-  padding: 0px 100px 0px 100px;
+  padding: 0 100px;
   background-color: #f5f3ef;
+  max-height: 150vh;
+  overflow-y: auto;
 }
 
 .messages-inbox {
   width: 25%;
   background-color: #faf9f7;
-  padding: 20px;
   border: 1px solid transparent;
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .messages-title {
@@ -1289,10 +1341,12 @@ section.messages {
   border: 1px solid transparent;
   margin-bottom: 10px;
   cursor: pointer;
+  padding: 20px;
 }
 
-.message-user.selected {
+.message-user.active {
   background-color: #fff;
+  width: 100%;
 }
 
 .message-user-image {
@@ -1337,6 +1391,8 @@ section.messages {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .message-header {
@@ -1357,7 +1413,7 @@ section.messages {
   object-fit: cover;
 }
 
-.message-sender {
+.message-receiver {
   font-weight: 500;
 }
 
@@ -1365,10 +1421,9 @@ section.messages {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   overflow-y: auto;
   padding-bottom: 10px;
-  justify-content: flex-end;
+  height: 80vh;
 }
 
 .message-received,
@@ -1401,6 +1456,7 @@ section.messages {
 
 .message-received-text p {
   margin: 0;
+  min-width: 50px;
 }
 
 .message-received-timestamp {
@@ -1420,6 +1476,7 @@ section.messages {
   margin-top: 10px;
   font-size: 14px;
   margin-left: auto;
+  align-items: end;
 }
 
 .message-sent p {
@@ -1427,6 +1484,7 @@ section.messages {
   background-color: #edf2f6;
   border-radius: 5px;
   padding: 10px;
+  max-width: fit-content;
 }
 
 .message-sent-timestamp {
@@ -1438,7 +1496,7 @@ section.messages {
 
 .message-send_message {
   display: flex;
-  align-items: center;
+  flex-direction: row;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -1451,7 +1509,7 @@ section.messages {
   font-size: 14px;
   margin-right: 10px;
   font-family: Playfair, sans-serif;
-  padding: 20px 50px 0px 50px;
+  padding: 20px 50px 0 50px;
   box-sizing: border-box;
   vertical-align: middle;
 }

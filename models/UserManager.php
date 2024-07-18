@@ -66,8 +66,7 @@ class UserManager extends AbstractEntityManager
     $statement->execute([':id' => $id]);
 
     $userData = $statement->fetch(PDO::FETCH_ASSOC);
-    //'<pre>' . var_dump($userData) . '<pre>';
-    //die;
+   
     if ($userData) {
       $user = new User();
       $user->setId($userData['id']);
@@ -85,16 +84,16 @@ class UserManager extends AbstractEntityManager
 
   public function updateUser(User $user): void
   {
-    // Retrieve the existing user record
+  
     $existingUser = $this->getUserById($user->getId());
 
-    // Store the original creation date
+  
     $creationDate = $existingUser->getCreationDate();
 
-    // Prepare the update query
+   
     $query = "UPDATE user SET username = :username, email = :email, password = :password, image = :image WHERE id = :id";
 
-    // Execute the update query
+   
     $statement = $this->db->prepare($query);
     $statement->execute([
       ':username' => $user->getUsername(),
@@ -104,12 +103,12 @@ class UserManager extends AbstractEntityManager
       ':id' => $user->getId()
     ]);
 
-    // Restore the original creation date if not explicitly updated
+    
     if ($creationDate && !$user->getCreationDate()) {
       $user->setCreationDate($creationDate);
     }
 
-    // Redirect to myAccount page after successful update
+   
     header('Location: index.php?action=myAccount');
     exit;
   }

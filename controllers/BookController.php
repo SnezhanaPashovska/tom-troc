@@ -5,8 +5,6 @@ class BookController
     public function showBooks(): void
     {
         try {
-            $id = Utils::request("id", -1);
-
             $bookManager = new BookManager();
             $book = $bookManager->getAllBooks();
 
@@ -38,7 +36,7 @@ class BookController
             }
 
             $userManager = new UserManager();
-            $user = $userManager->getUserById($book->getIdUser()); // Fetch user using userId
+            $user = $userManager->getUserById($book->getIdUser());
 
             //var_dump($user);
 
@@ -59,13 +57,13 @@ class BookController
     {
         try {
             $searchQuery = Utils::request("search_query", "");
-            // var_dump($_POST); // Debugging line
-            //var_dump($searchQuery); // Debugging line
+            // var_dump($_POST); 
+            //var_dump($searchQuery); 
 
             $bookManager = new BookManager();
             $books = $bookManager->searchBooksByTitle($searchQuery);
 
-            //var_dump($books); // Debugging line
+            //var_dump($books);
 
             if (empty($books)) {
                 throw new Exception("No books found matching your search query.");
@@ -127,6 +125,7 @@ class BookController
             $view->render("editBook", ['book' => $book]);
         }
     }
+
 
     public function deleteBook(): void
     {

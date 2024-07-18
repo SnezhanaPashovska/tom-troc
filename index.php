@@ -78,13 +78,13 @@ try {
       break;
 
     case 'bookUpdate':
-      $controller = new BookController();
-      $controller->editBook();
+      $bookController = new BookController();
+      $bookController->editBook();
       break;
 
     case 'deleteBook':
-      $controller = new BookController();
-      $controller->deleteBook();
+      $bookController = new BookController();
+      $bookController->deleteBook();
       break;
 
     case 'updateUser':
@@ -95,6 +95,11 @@ try {
     case 'messages':
       $messageController = new MessageController();
       $messageController->showMessages();
+      break;
+
+    case 'createMessage':
+      $messageController = new MessageController();
+      $messageController->createMessage();
       break;
 
 

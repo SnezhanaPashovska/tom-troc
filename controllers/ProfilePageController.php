@@ -5,19 +5,26 @@ class ProfilePageController
   public function showHome(): void
   {
 
-    $view = new View("Home");
-    $view->render("home");
+    try {
+      $bookManager = new BookManager();
+      $latestBooks = $bookManager->getLatestBooks();
+      $view = new View("Home");
+      $view->render("home", ['latestBooks' => $latestBooks]);
+    } catch (Exception $e) {
+      $view = new View("Error");
+      $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
+    }
   }
 
   public function showProfile(): void
   {
     $userManager = new UserManager();
 
-    $userId = Utils::request("id"); 
+    $userId = Utils::request("id");
     $user = $userManager->getUserById($userId);
 
     if (!$user) {
-      // Handle case where user is not found
+
       echo "<p>User not found.</p>";
       return;
     }

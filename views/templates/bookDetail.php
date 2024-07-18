@@ -7,7 +7,7 @@
       <div class="single-book-detail">
         <img src="<?= ($book->getImage()) ?>" alt="<?= ($book->getTitle()) ?>">
         <div class="single-book-text">
-          <h3><?= ($book->getTitle()) ?></h3>
+          <h1><?= ($book->getTitle()) ?></h1>
           <p class="single-book-author">par Author <?= ($book->getAuthor()) ?></p>
           <hr class="styled-hr">
           <p class="single-book-description">DESCRIPTION</p>
@@ -20,7 +20,7 @@
               <?= $user->getUsername() ?>
             </a>
           </div>
-          <button>Envoyer un message</button>
+          <a href="index.php?action=messages&receiver_id=<?= $user->getId(); ?>"class="single-book-envoyer">Envoyer un message</a>
         </div>
 
 

@@ -1,6 +1,6 @@
 <section class="my-account">
   <div class="my-account-container">
-    <h2 class="my-account-title">Mon compte</h2>
+    <h1 class="my-account-title">Mon compte</h1>
     <div class="my-account-details">
       <div class="my-account-details-content">
         <div class="my-account-details-photo">
@@ -15,7 +15,7 @@
 
 
           <div class="my-account-name">
-            <p><?= $user->getUsername() ?></p>
+            <h2><?= $user->getUsername() ?></h2>
           </div>
           <div class="my-account-date">
             <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
@@ -28,20 +28,15 @@
       <div class="my-account-update">
         <h2>Vos informations personnelles</h2>
 
-        <p>Adresse email</p>
-        <input type="email" name="email" placeholder="" required>
-        <p>Mot de passe</p>
-        <input type="password" name="password" placeholder="" required>
-        <p>Pseudo</p>
-        <input type="username" name="username" placeholder="" required>
+        <label for="email">Adresse email</label>
+        <input type="email" name="email" id="email" placeholder="" required>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" id="password" placeholder="" required>
+        <label for="username">Pseudo</label>
+        <input type="text" name="username" id="username" placeholder="" required>
         <button type="submit">Enregistrer</button>
         </form>
       </div>
-    </div>
-
-
-    <div class="add-book">
-      <button>Ajouter un livre</button>
     </div>
     <div class="my-account-books">
       <table class="my-account-books-table">
@@ -58,7 +53,7 @@
         <tbody class="table-book">
           <?php foreach ($userBooks as $book) : ?>
             <tr>
-              <td><img src="<?= $book->getImage() ?>" alt=""></td>
+              <td><img src="<?= $book->getImage() ?>" alt="Photo of the book"></td>
               <td>
                 <p><?= $book->getTitle() ?></p>
               </td>
@@ -66,7 +61,7 @@
                 <p><?= $book->getAuthor() ?></p>
               </td>
               <td>
-                <p><?= $book->getDescription(100) ?></p>
+                <p class="book-description"><?= $book->getDescription(100) ?></p>
               </td>
               <td>
                 <p class="<?= $book->isAvailable() ? 'available' : 'not-available'; ?>">

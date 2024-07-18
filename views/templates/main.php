@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -28,12 +28,12 @@
       <div></div>
       <nav class="menu-list">
         <ul class="menu-list-nav">
-          <li><a href="#"><img src="images/Icon messagerie.svg" alt="Icon massagerie">Messagerie <span class="notification-badge">1</span></a></li>
+          <li><a href="#"><img src="images/Iconmessagerie.svg" alt="Icon massagerie">Messagerie <span class="notification-badge">1</span></a></li>
           <?php if (isset($_SESSION['user'])) : ?>
-            <li><a href="index.php?action=myAccount"><img src="images/Icon mon compte.svg" alt="Icon mon compte">Mon compte</a></li>
+            <li><a href="index.php?action=myAccount"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon compte</a></li>
             <li><a href="index.php?action=disconnect">Déconnexion</a></li>
           <?php else : ?>
-            <li><a href="index.php?action=connectionForm"><img src="images/Icon mon compte.svg" alt="Icon mon compte">Mon compte</a></li>
+            <li><a href="index.php?action=connectionForm"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon compte</a></li>
             <li><a href="index.php?action=connectionForm">Connexion</a></li>
           <?php endif; ?>
         </ul>

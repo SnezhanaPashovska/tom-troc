@@ -14,24 +14,24 @@ class BookManager extends AbstractEntityManager
   public function getAllBooks(): array
   {
     try {
-      $query = "SELECT b.*, u.username AS owner_username
-                      FROM book b
-                      LEFT JOIN user u ON b.user_id = u.id";
+      $query = "SELECT b.id, b.user_id, b.title, b.author, b.description, b.image, b.is_available, u.username AS owner_username
+                FROM book b
+                LEFT JOIN user u ON b.user_id = u.id";
 
       $statement = $this->db->prepare($query);
       $statement->execute();
 
       $books = [];
-      while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+      while ($bookData = $statement->fetch(PDO::FETCH_ASSOC)) {
         $book = new Book();
-        $book->setId($row['id']);
-        $book->setIdUser($row['user_id']);
-        $book->setTitle($row['title']);
-        $book->setAuthor($row['author']);
-        $book->setDescription($row['description']);
-        $book->setImage($row['image']);
-        $book->setIsAvailable((bool)$row['is_available']);
-        $book->setUserName($row['owner_username']); // Assuming this is the username of the owner
+        $book->setId($bookData['id']);
+        $book->setIdUser($bookData['user_id']);
+        $book->setTitle($bookData['title']);
+        $book->setAuthor($bookData['author']);
+        $book->setDescription($bookData['description']);
+        $book->setImage($bookData['image']);
+        $book->setIsAvailable((bool)$bookData['is_available']);
+        $book->setUserName($bookData['owner_username']);
 
         $books[] = $book;
       }
@@ -69,18 +69,34 @@ class BookManager extends AbstractEntityManager
 
   public function searchBooksByTitle(string $title): array
   {
-    $query = "SELECT b.*, u.username AS userName
-              FROM book b
-              LEFT JOIN user u ON b.user_id = u.id
-              WHERE b.title LIKE :title";
-    $statement = $this->db->prepare($query);
-    $statement->execute([':title' => '%' . $title . '%']);
+    try {
+      $query = "SELECT b.id, b.user_id, b.title, b.author, b.description, b.image, b.is_available, u.username AS userName
+                FROM book b
+                LEFT JOIN user u ON b.user_id = u.id
+                WHERE b.title LIKE :title";
 
-    $books = [];
-    while ($book = $statement->fetch(PDO::FETCH_ASSOC)) {
-      $books[] = new Book($book);
+      $statement = $this->db->prepare($query);
+      $statement->execute([':title' => '%' . $title . '%']);
+
+      $books = [];
+      while ($bookData = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $book = new Book();
+        $book->setId($bookData['id']);
+        $book->setIdUser($bookData['user_id']);
+        $book->setTitle($bookData['title']);
+        $book->setAuthor($bookData['author']);
+        $book->setDescription($bookData['description']);
+        $book->setImage($bookData['image']);
+        $book->setIsAvailable((bool)$bookData['is_available']);
+        $book->setUserName($bookData['userName']);
+
+        $books[] = $book;
+      }
+
+      return $books;
+    } catch (PDOException $e) {
+      throw new Exception("Error searching books by title: " . $e->getMessage());
     }
-    return $books;
   }
 
   public function getUserBooks(int $userId): array
@@ -127,6 +143,37 @@ class BookManager extends AbstractEntityManager
       ':is_available' => $book->isAvailable(),
       ':image' => $book->getImage()
     ]);
+  }
+
+  public function getLatestBooks(): array
+  {
+    try {
+      $query = "SELECT b.id, b.user_id, b.title, b.author, b.description, b.image, b.is_available, u.username AS userName
+                  FROM book b
+                  LEFT JOIN user u ON b.user_id = u.id
+                  ORDER BY b.id DESC
+                  LIMIT 4";
+
+      $statement = $this->db->prepare($query);
+      $statement->execute();
+
+      $books = [];
+      while ($bookData = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $book = new Book();
+        $book->setId($bookData['id']);
+        $book->setIdUser($bookData['user_id']);
+        $book->setTitle($bookData['title']);
+        $book->setAuthor($bookData['author']);
+        $book->setImage($bookData['image']);
+        $book->setUserName($bookData['userName']);
+
+        $books[] = $book;
+      }
+
+      return $books;
+    } catch (PDOException $e) {
+      throw new Exception("Error fetching latest books: " . $e->getMessage());
+    }
   }
 
   public function deleteBook(int $id): bool

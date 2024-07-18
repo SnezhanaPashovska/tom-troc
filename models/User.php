@@ -56,7 +56,6 @@ class User extends AbstractEntity
     if ($creationDate instanceof DateTime) {
       $this->creationDate = $creationDate->format($format);
     } elseif (is_string($creationDate)) {
-      // Only set the creation date if it's not already set (prevent overwriting)
       if (!$this->creationDate) {
         $this->creationDate = $creationDate;
       }

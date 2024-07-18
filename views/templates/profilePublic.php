@@ -3,10 +3,10 @@
   <div class="container-profile-public">
     <div class="profile-public-info">
       <div class="profile-public-photo">
-        <img src="<?= ($user->getImage()) ?>" alt="User Image">
+        <img src="<?= ($user->getImage()) ?>" alt="Profile photo of the user">
       </div>
       <div class="profile-public-name">
-        <p><?= $user->getUserName()  ?></p>
+        <h1><?= $user->getUserName()  ?></h1>
       </div>
       <div class="profile-public-date">
         <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
@@ -16,7 +16,7 @@
         <p class="profile-public-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
       </div>
       <div class="profile-public-button">
-        <a href="index.php?action=messages" class="modify-book-link">Écrire un message</a>
+        <a href="index.php?action=messages&receiver_id=<?= $user->getId(); ?>" class="modify-book-link">Écrire un message</a>
       </div>
     </div>
 
@@ -33,7 +33,7 @@
         <tbody class="table-content">
           <?php foreach ($userBooks as $book) : ?>
             <tr>
-              <td><img src="<?= $book->getImage() ?>" alt=""></td>
+              <td><img src="<?= $book->getImage() ?>" alt="Photo of the book"></td>
               <td>
                 <p><?= $book->getTitle() ?></p>
               </td>
