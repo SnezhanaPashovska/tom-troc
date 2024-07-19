@@ -15,23 +15,23 @@ TomTroc est une application web développée dans le cadre du projet 6 d'OpenCla
 
 ### 1. Clonez le dépôt :
 
-git clone https://github.com/SnezhanaPashovska/tom-troc.git
+- git clone https://github.com/SnezhanaPashovska/tom-troc.git
 
 ### 2. Accédez au répertoire du projet :
 
-cd tomtroc
+- cd tomtroc
 
 ### 3. Configurez la base de données :
 
-Importez le fichier de la base de données : Importez le fichier tom_troc.sql dans votre serveur MySQL pour créer les tables nécessaires.
+- Importez le fichier de la base de données : Importez le fichier tom_troc.sql dans votre serveur MySQL pour créer les tables nécessaires.
 
-Configurez les fichiers de configuration :
+- Configurez les fichiers de configuration :
 
-Ouvrez le fichier _config.php (et le nommer config.php) et remplissez ce fichier avec vos informations nécessaires pour la connexion à la base de données. 
+- Ouvrez le fichier _config.php (et le nommer config.php) et remplissez ce fichier avec vos informations nécessaires pour la connexion à la base de données. 
 
 ### 4. Lancez le serveur PHP intégré :
 
-php -S localhost:8080 
+- php -S localhost:8080 
 
 ## Utilisation :
 
