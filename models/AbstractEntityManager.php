@@ -1,12 +1,23 @@
 <?php
 
+/**
+ * Class AbstractEntityManager
+ *
+ */
 abstract class AbstractEntityManager
 {
 
-  protected $db;
+    /**
+     * @var DBManager The database manager instance used for database operations.
+     */
+    protected $db;
 
-  public function __construct()
-  {
-    $this->db = DBManager::getInstance();
-  }
+    /**
+     * AbstractEntityManager constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->db = DBManager::getInstance();
+    }
 }

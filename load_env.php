@@ -18,5 +18,5 @@ function loadEnv($path)
   }
 }
 
-// Adjust the path to your .env file if needed
+
 loadEnv(__DIR__ . '/.env');

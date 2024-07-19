@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Book
+ *
+ */
 class Book extends AbstractEntity
 {
     protected int $id = -1;
@@ -11,6 +15,7 @@ class Book extends AbstractEntity
     private bool $isAvailable = false;
     private string $userName = "";
 
+  
     public function setId(int $id): void
     {
         $this->id = $id;

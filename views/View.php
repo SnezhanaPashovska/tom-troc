@@ -13,7 +13,6 @@ class View
   public function render(string $viewName, array $params = []): void
   {
     $viewPath = $this->buildViewPath($viewName);
-    //echo "View path: $viewPath";
     $content = $this->_renderViewFromTemplate($viewPath, $params);
     $template = $this->template;
     ob_start();

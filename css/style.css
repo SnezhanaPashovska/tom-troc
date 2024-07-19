@@ -1529,3 +1529,26 @@ section.messages {
 .message-send_message button:hover {
   background-color: #009655;
 }
+
+.error
+{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     
+  text-align: center;
+  line-height: 1.5;
+}
+
+.error a 
+{
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+}
+
+.error a:hover 
+{
+  color: #767573;
+}

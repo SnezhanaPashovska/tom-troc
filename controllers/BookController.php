@@ -1,7 +1,19 @@
 <?php
 
+/**
+ * Class BookController
+ *
+ * Controller for handling book-related actions.
+ */
+
 class BookController
 {
+    /**
+     * Displays a list of all books.
+     *
+     * @return void
+     * @throws Exception If no books are found or if an error occurs.
+     */
     public function showBooks(): void
     {
         try {
@@ -20,6 +32,12 @@ class BookController
         }
     }
 
+    /**
+     * Displays the details of a specific book.
+     *
+     * @return void
+     * @throws Exception If the book or user is not found.
+     */
     public function showBookDetail(): void
     {
         try {
@@ -28,17 +46,12 @@ class BookController
             $bookManager = new BookManager();
             $book = $bookManager->getBookById($bookId);
 
-            //var_dump($bookId); // Check $bookId
-            //var_dump($book->getIdUser()); // Check $book->getIdUser()
-
             if (!$book) {
                 throw new Exception("Le livre demandé n'existe pas.");
             }
 
             $userManager = new UserManager();
             $user = $userManager->getUserById($book->getIdUser());
-
-            //var_dump($user);
 
             if (!$user) {
                 throw new Exception("Utilisateur non trouvé.");
@@ -52,18 +65,20 @@ class BookController
         }
     }
 
-
+    /**
+     * Searches for books based on a query.
+     *
+     * @return void
+     * @throws Exception If no books are found matching the query.
+     */
     public function searchBooks(): void
     {
         try {
             $searchQuery = Utils::request("search_query", "");
-            // var_dump($_POST); 
-            //var_dump($searchQuery); 
+
 
             $bookManager = new BookManager();
             $books = $bookManager->searchBooksByTitle($searchQuery);
-
-            //var_dump($books);
 
             if (empty($books)) {
                 throw new Exception("No books found matching your search query.");
@@ -77,6 +92,12 @@ class BookController
         }
     }
 
+    /**
+     * Handles the editing of a book's details.
+     *
+     * @return void
+     * @throws Exception If the book does not exist or an error occurs during the update.
+     */
     public function editBook(): void
     {
 
@@ -126,7 +147,12 @@ class BookController
         }
     }
 
-
+    /**
+     * Deletes a book based on its ID.
+     *
+     * @return void
+     * @throws Exception If the book does not exist or an error occurs during deletion.
+     */
     public function deleteBook(): void
     {
         $bookId = Utils::request("id", -1);

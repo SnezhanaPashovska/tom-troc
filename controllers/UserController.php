@@ -1,8 +1,17 @@
 <?php
 
+/**
+ * Class UserController
+ *
+ * Manages user-related actions such as viewing user profiles, handling user authentication, and managing user subscriptions.
+ */
 class UserController
 {
-
+    /**
+     * Checks if a user is connected. If not, redirects to the connection form.
+     *
+     * @return void
+     */
     private function checkIfUserIsConnected(): void
     {
         if (!isset($_SESSION['user'])) {
@@ -11,6 +20,12 @@ class UserController
         }
     }
 
+    /**
+     * Displays the user profile page.
+     *
+     * @return void
+     * @throws Exception If the user is not found.
+     */
     public function showUser(): void
     {
         $this->checkIfUserIsConnected();
@@ -30,12 +45,23 @@ class UserController
         $view->render("myAccount", ['user' => $user, 'userBooks' => $userBooks, 'totalBooks' => $totalBooks]);
     }
 
+    /**
+     * Displays the connection form page.
+     *
+     * @return void
+     */
     public function displayConnectionForm(): void
     {
         $view = new View("Connexion");
         $view->render("connectionForm");
     }
 
+    /**
+     * Authenticates a user based on provided email and password.
+     *
+     * @return void
+     * @throws Exception If the email or password is incorrect or user does not exist.
+     */
     public function connectUser(): void
     {
         $email = htmlspecialchars(Utils::request("email"));
@@ -62,6 +88,12 @@ class UserController
         Utils::redirect("myAccount");
     }
 
+    /**
+     * Handles user registration. Displays the subscription form or processes the form submission.
+     *
+     * @return void
+     * @throws Exception If any of the required fields are missing or registration fails.
+     */
     public function subscribeUser(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -76,12 +108,14 @@ class UserController
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $newUser = new User([
-                'username' => $username,
-                'email' => $email,
-                'password' => $hashedPassword,
-                'isAdmin' => false
-            ]);
+            $newUser = new User(
+                [
+                    'username' => $username,
+                    'email' => $email,
+                    'password' => $hashedPassword,
+                    'isAdmin' => false
+                ]
+            );
 
             $userManager = new UserManager(DBManager::getInstance());
             $addedUser = $userManager->addUser($newUser);
@@ -100,6 +134,11 @@ class UserController
         }
     }
 
+    /**
+     * Disconnects a user by clearing the session and redirects to the home page.
+     *
+     * @return void
+     */
     public function disconnectUser(): void
     {
         unset($_SESSION['user']);
@@ -108,6 +147,12 @@ class UserController
         Utils::redirect("home");
     }
 
+    /**
+     * Updates user information. Processes form submission to update user details.
+     *
+     * @return void
+     * @throws Exception If there are errors with the file upload or user update fails.
+     */
     public function updateUser(): void
     {
         $this->checkIfUserIsConnected();
@@ -137,23 +182,18 @@ class UserController
                 }
             }
 
-            // Handle username, email, and password
             $username = isset($_POST['username']) ? trim($_POST['username']) : $user->getUsername();
             $email = isset($_POST['email']) ? trim($_POST['email']) : $user->getEmail();
             $password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user->getPassword();
 
-            // Update user data in the object
             $user->setUsername($username);
             $user->setEmail($email);
             $user->setPassword($password);
 
-            // Set back the original creation date
             $user->setCreationDate($originalCreationDate);
 
-            // Update user in the database via UserManager
             $userManager->updateUser($user);
 
-            // Redirect to myAccount page after successful update
             header('Location: index.php?action=myAccount');
             exit;
         }
