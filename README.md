@@ -4,8 +4,8 @@
 TomTroc est une application web développée dans le cadre du projet 6 d'OpenClassrooms. Elle utilise le modèle de conception MVC (Modèle-Vue-Contrôleur) en PHP et est conçue pour fonctionner avec une base de données MySQL.
 
 
-Prérequis :
-Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
+## Prérequis :
+#### Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 PHP (version 7.x ou supérieure)
 MySQL
