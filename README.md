@@ -7,8 +7,8 @@ TomTroc est une application web développée dans le cadre du projet 6 d'OpenCla
 ## Prérequis :
 #### Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-PHP (version 7.x ou supérieure)
-MySQL
+- PHP (version 7.x ou supérieure)
+- MySQL
 
 
 ## Installation :
