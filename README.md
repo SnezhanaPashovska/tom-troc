@@ -1,36 +1,41 @@
-TomTroc
+# TomTroc
 
-Description :
+## Description :
 TomTroc est une application web développée dans le cadre du projet 6 d'OpenClassrooms. Elle utilise le modèle de conception MVC (Modèle-Vue-Contrôleur) en PHP et est conçue pour fonctionner avec une base de données MySQL.
 
-Prérequis :
-Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-PHP (version 7.x ou supérieure)
-MySQL
+## Prérequis :
+#### Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
-Installation :
+- PHP (version 7.x ou supérieure)
+- MySQL
 
-1. Clonez le dépôt :
 
-git clone https://github.com/SnezhanaPashovska/tom-troc.git
+## Installation :
 
-2. Accédez au répertoire du projet :
+### 1. Clonez le dépôt :
 
-cd tomtroc
+- git clone https://github.com/SnezhanaPashovska/tom-troc.git
 
-3. Configurez la base de données :
+### 2. Accédez au répertoire du projet :
 
-Importez le fichier de la base de données : Importez le fichier tom_troc.sql dans votre serveur MySQL pour créer les tables nécessaires.
+- cd tomtroc
 
-Configurez les fichiers de configuration :
+### 3. Configurez la base de données :
 
-Ouvrez le fichier \_config.php (et le nommer config.php) et remplissez ce fichier avec vos informations nécessaires pour la connexion à la base de données.
+- Importez le fichier de la base de données : Importez le fichier tom_troc.sql dans votre serveur MySQL pour créer les tables nécessaires.
 
-4. Lancez le serveur PHP intégré :
+- Configurez les fichiers de configuration :
 
-php -S localhost:8080
+- Ouvrez le fichier _config.php (et le nommer config.php) et remplissez ce fichier avec vos informations nécessaires pour la connexion à la base de données. 
 
-Utilisation :
-S'inscrire : Suivez les instructions à l'écran pour créer un compte.
-Se connecter : Utilisez votre adresse e-mail et mot de passe pour accéder à l'application.
+### 4. Lancez le serveur PHP intégré :
+
+- php -S localhost:8080 
+
+## Utilisation :
+
+### S'inscrire : 
+Suivez les instructions à l'écran pour créer un compte.
+### Se connecter : 
+Utilisez votre adresse e-mail et mot de passe pour accéder à l'application.
