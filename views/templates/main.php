@@ -56,7 +56,7 @@
       <img src="/images/logo_tom_troc_simple.png" alt="Logo TT" class="logo-footer">
     </nav>
   </footer>
-  <script src="../../js/unreadMessages.js"></script>
+  <script src="/js/unreadMessages.js"></script>
 </body>
 
 </html>

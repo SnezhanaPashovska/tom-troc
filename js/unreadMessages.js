@@ -1,24 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const badge = document.querySelector('.notification-badge');
-
     function updateBadge() {
-        fetch('countNewMessages.php')
+        console.log('Checking for new messages...');
+        fetch('index.php?action=countNewMessages')
             .then(response => response.json())
             .then(data => {
-                if (data.error) {
-                    console.error(data.error);
-                } else {
-                    badge.textContent = data.newMessageCount;
+                console.log('Received data:', data);
+                if (data.newMessageCount !== undefined) {
+                    document.querySelector('.notification-badge').textContent = data.newMessageCount;
                 }
             })
-            .catch(error => console.error('Error fetching new message count:', error));
+            .catch(error => console.error('Error fetching new messages:', error));
     }
 
-    // Update badge every 30 seconds
+    // Check for new messages every 30 seconds
     setInterval(updateBadge, 30000);
 
-    // Initial call to set the badge on page load
+    // Initial check
     updateBadge();
 });
+
+
 
 

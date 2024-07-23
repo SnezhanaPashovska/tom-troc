@@ -31,7 +31,7 @@ class MessageController
     public function showMessages(): void
     {
         try {
-            // Ensure the user is logged in
+            
             if (!isset($_SESSION['idUser'])) {
                 throw new Exception("User not logged in.");
             }
@@ -39,25 +39,27 @@ class MessageController
             $user_id_sender = (int)$_SESSION['idUser'];
             $user_id_receiver = isset($_GET['receiver_id']) ? (int)$_GET['receiver_id'] : null;
         
-            // Create instances of MessageManager and UserManager
+           
             $messageManager = new MessageManager();
             $userManager = new UserManager();
         
-            // Get the latest messages from all receivers
             $latestMessages = $this->messageManager->getLatestMessagesFromAllUsers($user_id_sender);
             
             
             $receiver = null;
             $messages = [];
         
-            // If a specific receiver ID is provided, fetch the messages with that user
             if ($user_id_receiver) {
                 $receiver = $userManager->getUserById($user_id_receiver);
                 if (!$receiver) {
                     throw new Exception("User with ID $user_id_receiver not found.");
                 }
                 $messages = $this->messageManager->getAllMessagesBetweenUsers($user_id_sender, $user_id_receiver);
+
+                $messageManager->markMessagesAsRead($user_id_receiver, $user_id_sender);
             }
+
+            $_SESSION['last_checked_messages'] = (new DateTime())->format('Y-m-d H:i:s');
             
         
             // Render the view
@@ -97,6 +99,7 @@ class MessageController
                     throw new Exception("Invalid input data.");
                 }
 
+                
                 $userManager = new UserManager();
                 $receiver = $userManager->getUserById($user_id_receiver);
 
@@ -122,5 +125,23 @@ class MessageController
      *
      * @return void
      */
+
+     public function countNewMessages(): void
+{
+    try {
+        if (!isset($_SESSION['idUser'])) {
+            throw new Exception("User not logged in.");
+        }
+
+        $user_id_receiver = (int)$_SESSION['idUser'];
+        $messageManager = new MessageManager();
+
+        $newMessageCount = $messageManager->countNewMessages($user_id_receiver);
+
+        echo json_encode(['newMessageCount' => $newMessageCount]);
+    } catch (Exception $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+    }
+}
     
 }

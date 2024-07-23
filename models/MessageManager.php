@@ -20,9 +20,15 @@ class MessageManager
      */
     public function sendMessage(int $user_id_sender, int $user_id_receiver, string $text): void
     {
-        $statement = $this->db->prepare('INSERT INTO message (user_id_sender, user_id_receiver, text, created_at) VALUES (?, ?, ?, ?)');
-        $statement->execute([$user_id_sender, $user_id_receiver, $text, date('Y-m-d H:i:s')]);
+        $statement = $this->db->prepare('INSERT INTO message (user_id_sender, user_id_receiver, text, created_at, is_read) VALUES (?, ?, ?, ?, ?)');
+        $statement->execute([$user_id_sender, $user_id_receiver, $text, date('Y-m-d H:i:s'), 0]);
     }
+
+    public function markMessagesAsRead(int $user_id_sender, int $user_id_receiver): void
+{
+    $statement = $this->db->prepare('UPDATE message SET is_read = 1 WHERE user_id_sender = ? AND user_id_receiver = ?');
+    $statement->execute([$user_id_sender, $user_id_receiver]);
+}
 
     /**
      * Retrieves all messages from the database.
@@ -164,7 +170,8 @@ class MessageManager
         $statement = $this->db->prepare($query);
         $statement->execute([':user_id_receiver' => $user_id_receiver]);
         $result = $statement->fetch(PDO::FETCH_ASSOC);
-
+    
         return (int)$result['new_message_count'];
     }
+
 }
