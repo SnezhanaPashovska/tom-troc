@@ -21,7 +21,8 @@ class BookManager extends AbstractEntityManager
         try {
             $query = "SELECT b.id, b.user_id, b.title, b.author, b.description, b.image, b.is_available, u.username AS owner_username
                 FROM book b
-                LEFT JOIN user u ON b.user_id = u.id";
+                LEFT JOIN user u ON b.user_id = u.id
+                 WHERE b.is_available = 1";
 
             $statement = $this->db->prepare($query);
             $statement->execute();

@@ -1315,12 +1315,16 @@ section.messages {
   overflow-y: auto;
 }
 
-.messages-inbox {
+.messages-inbox{
   width: 25%;
   background-color: #faf9f7;
   border: 1px solid transparent;
   overflow-y: auto;
   max-height: 100vh;
+}
+
+.no-recent-message{
+  padding-left: 10px;
 }
 
 .messages-title {
@@ -1340,7 +1344,7 @@ section.messages {
   padding: 10px 0;
   border: 1px solid transparent;
   margin-bottom: 10px;
-  cursor: pointer;
+  
   padding: 20px;
 }
 
@@ -1494,14 +1498,21 @@ section.messages {
   margin-left: auto;
 }
 
-.message-send_message {
+.message-send_message,
+.message-send_message-inbox {
   display: flex;
   flex-direction: row;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.message-send_message textarea {
+.message-send_message-inbox{
+  width: 90%;
+  margin-top: auto;
+}
+
+.message-send_message textarea,
+.message-send_message-inbox textarea {
   width: 90%;
   border-radius: 5px;
   border: 1px solid #ddd;
@@ -1514,19 +1525,21 @@ section.messages {
   vertical-align: middle;
 }
 
-.message-send_message button {
+.message-send_message button,
+.message-send_message-inbox button {
   padding: 10px 20px;
   background-color: #00ac66;
   color: #fff;
   border: none;
   border-radius: 10px;
   font-weight: bold;
-  cursor: pointer;
+ 
   height: 53px;
   width: 150px;
 }
 
-.message-send_message button:hover {
+.message-send_message button:hover,
+.message-send_message-inbox button:hover {
   background-color: #009655;
 }
 
@@ -1552,3 +1565,20 @@ section.messages {
 {
   color: #767573;
 }
+
+.message-send-container {
+  height: 90vh;
+  display: flex;
+}
+
+.message-send-form textarea[disabled] {
+  background-color: #f0f0f0;
+  
+}
+
+.message-send-form button[disabled] {
+  background-color: #d0d0d0;
+ 
+}
+
+

@@ -31,28 +31,36 @@ class MessageController
     public function showMessages(): void
     {
         try {
+            // Ensure the user is logged in
             if (!isset($_SESSION['idUser'])) {
                 throw new Exception("User not logged in.");
             }
-
+        
             $user_id_sender = (int)$_SESSION['idUser'];
             $user_id_receiver = isset($_GET['receiver_id']) ? (int)$_GET['receiver_id'] : null;
-
+        
+            // Create instances of MessageManager and UserManager
+            $messageManager = new MessageManager();
             $userManager = new UserManager();
-
-            $latestMessages = $this->messageManager->getLatestMessagesFromAllReceivers($user_id_sender);
-
+        
+            // Get the latest messages from all receivers
+            $latestMessages = $this->messageManager->getLatestMessagesFromAllUsers($user_id_sender);
+            
+            
+            $receiver = null;
+            $messages = [];
+        
+            // If a specific receiver ID is provided, fetch the messages with that user
             if ($user_id_receiver) {
                 $receiver = $userManager->getUserById($user_id_receiver);
                 if (!$receiver) {
                     throw new Exception("User with ID $user_id_receiver not found.");
                 }
                 $messages = $this->messageManager->getAllMessagesBetweenUsers($user_id_sender, $user_id_receiver);
-            } else {
-                $receiver = null;
-                $messages = [];
             }
-
+            
+        
+            // Render the view
             $view = new View("Messages");
             $view->render(
                 "messages",
@@ -61,13 +69,14 @@ class MessageController
                     'messages' => $messages,
                     'receiver' => $receiver,
                     'user_id_receiver' => $user_id_receiver,
+                    'user_id_sender' => $user_id_sender,
                 ]
             );
         } catch (Exception $e) {
             $view = new View("Error");
             $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
-        }
-    }
+        }}
+    
 
     /**
      * Handles the creation of a new message.
@@ -107,4 +116,11 @@ class MessageController
             $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
         }
     }
+
+    /**
+     * Counts new messages for the logged-in user.
+     *
+     * @return void
+     */
+    
 }

@@ -102,6 +102,11 @@ try {
       $messageController->createMessage();
       break;
 
+    case 'countNewMessages': 
+      $controller = new MessageController();
+      $controller->countNewMessages();
+      break;
+
 
     default:
       throw new Exception("Unknown action: $action");

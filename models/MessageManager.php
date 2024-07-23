@@ -54,22 +54,66 @@ class MessageManager
      * @param int $user_id_sender Sender's user ID
      * @return array Array of associative arrays containing message data and receiver details
      */
-    public function getLatestMessagesFromAllReceivers(int $user_id_sender): array
+
+    public function getLatestMessagesFromAllReceivers(int $user_id_receiver): array
     {
         $query = "
-      SELECT m.*, u.username as receiver_username, u.image as receiver_image
-      FROM message m
-      INNER JOIN user u ON m.user_id_receiver = u.id
-      INNER JOIN (
-        SELECT user_id_receiver, MAX(created_at) as latest_message_time
-        FROM message
-        WHERE user_id_sender = :user_id_sender
-        GROUP BY user_id_receiver
-      ) lm ON m.user_id_receiver = lm.user_id_receiver AND m.created_at = lm.latest_message_time
-      ORDER BY m.created_at DESC
+        SELECT m.*, u.username as receiver_username, u.image as receiver_image
+        FROM message m
+        INNER JOIN user u ON m.user_id_sender = u.id
+        INNER JOIN (
+            SELECT user_id_sender, MAX(created_at) as latest_message_time
+            FROM message
+            WHERE user_id_receiver = :user_id_receiver
+            GROUP BY user_id_sender
+        ) lm ON m.user_id_sender = lm.user_id_sender AND m.created_at = lm.latest_message_time
+        WHERE m.user_id_receiver = :user_id_receiver
+        ORDER BY m.created_at DESC
     ";
+    $statement = $this->db->prepare($query);
+    $statement->execute([':user_id_receiver' => $user_id_receiver]);
+    $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($messages as &$message) {
+        $message['created_at'] = new DateTime($message['created_at']);
+    }
+
+    return $messages;
+    }
+
+    
+    public function getLatestMessagesFromAllUsers(int $user_id): array
+    {
+        $query = "
+        SELECT m.*, 
+               CASE 
+                   WHEN m.user_id_sender = :user_id THEN u_receiver.username
+                   ELSE u_sender.username
+               END as username,
+               CASE 
+                   WHEN m.user_id_sender = :user_id THEN u_receiver.image
+                   ELSE u_sender.image
+               END as user_image,
+               CASE 
+                   WHEN m.user_id_sender = :user_id THEN m.user_id_receiver
+                   ELSE m.user_id_sender
+               END as other_user_id
+        FROM message m
+        INNER JOIN user u_sender ON m.user_id_sender = u_sender.id
+        INNER JOIN user u_receiver ON m.user_id_receiver = u_receiver.id
+        WHERE m.id IN (
+            SELECT MAX(id) 
+            FROM message
+            WHERE user_id_sender = :user_id OR user_id_receiver = :user_id
+            GROUP BY CASE 
+                        WHEN user_id_sender = :user_id THEN user_id_receiver
+                        ELSE user_id_sender
+                     END
+        )
+        ORDER BY m.created_at DESC
+        ";
         $statement = $this->db->prepare($query);
-        $statement->execute([':user_id_sender' => $user_id_sender]);
+        $statement->execute([':user_id' => $user_id]);
         $messages = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($messages as &$message) {
@@ -78,7 +122,6 @@ class MessageManager
 
         return $messages;
     }
-
     /**
      * Retrieves all messages exchanged between two users.
      * @param int $user_id_sender Sender's user ID
@@ -108,5 +151,20 @@ class MessageManager
         }
 
         return $messages;
+    }
+
+    /**
+     * Counts new messages for a given user.
+     * @param int $user_id_receiver Receiver's user ID
+     * @return int Count of new messages
+     */
+    public function countNewMessages(int $user_id_receiver): int
+    {
+        $query = "SELECT COUNT(*) as new_message_count FROM message WHERE user_id_receiver = :user_id_receiver AND is_read = 0";
+        $statement = $this->db->prepare($query);
+        $statement->execute([':user_id_receiver' => $user_id_receiver]);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return (int)$result['new_message_count'];
     }
 }

@@ -14,11 +14,11 @@
       </div>
       <div class="edit-form">
         <label for="title">Titre</label>
-        <input type="text" name="title" id="title" placeholder="" required>
+        <input type="text" name="title" id="title" placeholder="<?= ($book->getTitle()) ?>"  > 
         <label for="author">Auteur</label>
-        <input type="text" name="author" id="author" required>
+        <input type="text" name="author" id="author" placeholder="<?= ($book->getAuthor()) ?>">
         <label for="description">Commentaire</label>
-        <textarea name="description" id="description" placeholder=""></textarea>
+        <textarea name="description" id="description" placeholder="<?= nl2br(($book->getDescription())) ?>"></textarea>
         <label for="availability">Disponibilité</label>
         <select name="availability" id="availability">
           <option value="1">disponible</option>

@@ -28,8 +28,9 @@
       <div></div>
       <nav class="menu-list">
         <ul class="menu-list-nav">
-          <li><a href="#"><img src="images/Iconmessagerie.svg" alt="Icon massagerie">Messagerie <span class="notification-badge">1</span></a></li>
+        <li><a href="index.php?action=messages"><img src="images/Iconmessagerie.svg" alt="Icon messagerie">Messagerie <span class="notification-badge">0</span></a></li>
           <?php if (isset($_SESSION['user'])) : ?>
+           
             <li><a href="index.php?action=myAccount"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon compte</a></li>
             <li><a href="index.php?action=disconnect">Déconnexion</a></li>
           <?php else : ?>
@@ -55,7 +56,7 @@
       <img src="/images/logo_tom_troc_simple.png" alt="Logo TT" class="logo-footer">
     </nav>
   </footer>
-
+  <script src="../../js/unreadMessages.js"></script>
 </body>
 
 </html>
