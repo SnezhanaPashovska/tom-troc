@@ -31,24 +31,24 @@ class MessageController
     public function showMessages(): void
     {
         try {
-            
+
             if (!isset($_SESSION['idUser'])) {
                 throw new Exception("User not logged in.");
             }
-        
-            $user_id_sender = (int)$_SESSION['idUser'];
-            $user_id_receiver = isset($_GET['receiver_id']) ? (int)$_GET['receiver_id'] : null;
-        
-           
+
+            $user_id_sender = (int) $_SESSION['idUser'];
+            $user_id_receiver = isset($_GET['receiver_id']) ? (int) $_GET['receiver_id'] : null;
+
+
             $messageManager = new MessageManager();
             $userManager = new UserManager();
-        
+
             $latestMessages = $this->messageManager->getLatestMessagesFromAllUsers($user_id_sender);
-            
-            
+
+
             $receiver = null;
             $messages = [];
-        
+
             if ($user_id_receiver) {
                 $receiver = $userManager->getUserById($user_id_receiver);
                 if (!$receiver) {
@@ -60,9 +60,8 @@ class MessageController
             }
 
             $_SESSION['last_checked_messages'] = (new DateTime())->format('Y-m-d H:i:s');
-            
-        
-            // Render the view
+
+
             $view = new View("Messages");
             $view->render(
                 "messages",
@@ -77,8 +76,9 @@ class MessageController
         } catch (Exception $e) {
             $view = new View("Error");
             $view->render("errorPage", ['errorMessage' => $e->getMessage()]);
-        }}
-    
+        }
+    }
+
 
     /**
      * Handles the creation of a new message.
@@ -99,7 +99,7 @@ class MessageController
                     throw new Exception("Invalid input data.");
                 }
 
-                
+
                 $userManager = new UserManager();
                 $receiver = $userManager->getUserById($user_id_receiver);
 
@@ -126,22 +126,22 @@ class MessageController
      * @return void
      */
 
-     public function countNewMessages(): void
-{
-    try {
-        if (!isset($_SESSION['idUser'])) {
-            throw new Exception("User not logged in.");
+    public function countNewMessages(): void
+    {
+        try {
+            if (!isset($_SESSION['idUser'])) {
+                throw new Exception("User not logged in.");
+            }
+
+            $user_id_receiver = (int) $_SESSION['idUser'];
+            $messageManager = new MessageManager();
+
+            $newMessageCount = $messageManager->countNewMessages($user_id_receiver);
+
+            echo json_encode(['newMessageCount' => $newMessageCount]);
+        } catch (Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
         }
-
-        $user_id_receiver = (int)$_SESSION['idUser'];
-        $messageManager = new MessageManager();
-
-        $newMessageCount = $messageManager->countNewMessages($user_id_receiver);
-
-        echo json_encode(['newMessageCount' => $newMessageCount]);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
     }
-}
-    
+
 }

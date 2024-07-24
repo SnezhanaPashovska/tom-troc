@@ -2,13 +2,13 @@
 
 class DBManager
 {
-     /**
+    /**
      * @var PDO Database connection
      */
     private $db;
     private static $instance;
 
-   /**
+    /**
      * DBManager constructor.
      * @throws PDOException if connection fails
      */

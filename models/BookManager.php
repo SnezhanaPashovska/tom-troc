@@ -12,7 +12,7 @@ class BookManager extends AbstractEntityManager
         $this->db = DBManager::getInstance()->getPDO();
     }
 
-     /**
+    /**
      * @return array Returns an array of all books
      * @throws Exception if there is an error fetching books
      */
@@ -36,7 +36,7 @@ class BookManager extends AbstractEntityManager
                 $book->setAuthor($bookData['author']);
                 $book->setDescription($bookData['description']);
                 $book->setImage($bookData['image']);
-                $book->setIsAvailable((bool)$bookData['is_available']);
+                $book->setIsAvailable((bool) $bookData['is_available']);
                 $book->setUserName($bookData['owner_username']);
 
                 $books[] = $book;
@@ -48,7 +48,7 @@ class BookManager extends AbstractEntityManager
         }
     }
 
-     /**
+    /**
      * @param int $id Book ID
      * @return Book|null Returns a Book object or null if not found
      */
@@ -69,7 +69,7 @@ class BookManager extends AbstractEntityManager
             $book->setAuthor($bookData['author']);
             $book->setDescription($bookData['description']);
             $book->setImage($bookData['image']);
-            $book->setIsAvailable((bool)$bookData['is_available']);
+            $book->setIsAvailable((bool) $bookData['is_available']);
 
             return $book;
         }
@@ -102,7 +102,7 @@ class BookManager extends AbstractEntityManager
                 $book->setAuthor($bookData['author']);
                 $book->setDescription($bookData['description']);
                 $book->setImage($bookData['image']);
-                $book->setIsAvailable((bool)$bookData['is_available']);
+                $book->setIsAvailable((bool) $bookData['is_available']);
                 $book->setUserName($bookData['userName']);
 
                 $books[] = $book;
@@ -132,14 +132,14 @@ class BookManager extends AbstractEntityManager
             $book->setAuthor($bookData['author']);
             $book->setDescription($bookData['description']);
             $book->setImage($bookData['image']);
-            $book->setIsAvailable((bool)$bookData['is_available']);
+            $book->setIsAvailable((bool) $bookData['is_available']);
 
             $books[] = $book;
         }
         return $books;
     }
 
-     /**
+    /**
      * @param int $userId User ID
      * @return int Returns the count of books for a specific user
      */
@@ -209,7 +209,7 @@ class BookManager extends AbstractEntityManager
         }
     }
 
-     /**
+    /**
      * @param int $id Book ID to delete
      * @return bool Returns true if the book was deleted successfully
      */

@@ -15,7 +15,7 @@ class Book extends AbstractEntity
     private bool $isAvailable = false;
     private string $userName = "";
 
-  
+
     public function setId(int $id): void
     {
         $this->id = $id;

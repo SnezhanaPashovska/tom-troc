@@ -121,7 +121,7 @@ class UserController
             $addedUser = $userManager->addUser($newUser);
 
             if ($addedUser) {
-
+                
                 Utils::redirect("connectionForm");
             } else {
 

@@ -55,10 +55,10 @@ class UserManager extends AbstractEntityManager
             $isAdmin = $user->isAdmin() ? 1 : 0;
 
             $params = [
-            'username' => $user->getUsername(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'is_Admin' => $user->isAdmin(),
+                'username' => $user->getUsername(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword(),
+                'is_Admin' => $user->isAdmin(),
             ];
 
             $stmt = $this->db->prepare($statement);
@@ -84,7 +84,7 @@ class UserManager extends AbstractEntityManager
         $statement->execute([':id' => $id]);
 
         $userData = $statement->fetch(PDO::FETCH_ASSOC);
-   
+
         if ($userData) {
             $user = new User();
             $user->setId($userData['id']);
@@ -100,39 +100,39 @@ class UserManager extends AbstractEntityManager
         return null;
     }
 
-     /**
+    /**
      * Updates an existing user.
      * @param User $user The User object with updated information
      */
     public function updateUser(User $user): void
     {
-  
+
         $existingUser = $this->getUserById($user->getId());
 
-  
+
         $creationDate = $existingUser->getCreationDate();
 
-   
+
         $query = "UPDATE user SET username = :username, email = :email, password = :password, image = :image WHERE id = :id";
 
-   
+
         $statement = $this->db->prepare($query);
         $statement->execute(
             [
-            ':username' => $user->getUsername(),
-            ':email' => $user->getEmail(),
-            ':password' => $user->getPassword(),
-            ':image' => $user->getImage(),
-            ':id' => $user->getId()
+                ':username' => $user->getUsername(),
+                ':email' => $user->getEmail(),
+                ':password' => $user->getPassword(),
+                ':image' => $user->getImage(),
+                ':id' => $user->getId()
             ]
         );
 
-    
+
         if ($creationDate && !$user->getCreationDate()) {
             $user->setCreationDate($creationDate);
         }
 
-   
+
         header('Location: index.php?action=myAccount');
         exit;
     }

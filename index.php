@@ -102,7 +102,7 @@ try {
       $messageController->createMessage();
       break;
 
-    case 'countNewMessages': 
+    case 'countNewMessages':
       $controller = new MessageController();
       $controller->countNewMessages();
       break;

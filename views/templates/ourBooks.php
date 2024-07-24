@@ -4,9 +4,10 @@
       <h1>Nos livres à l’échange</h1>
       <div class="search-container">
         <form action="index.php?action=searchBooks" method="post">
-        <label for="search_query" class="visually-hidden">Search query</label>
+          <label for="search_query" class="visually-hidden">Search query</label>
           <img src="images/Union.svg" alt="Search magnifying glass">
-          <input type="text" name="search_query" id="search_query" class="search_query" placeholder="Rechercher un livre">
+          <input type="text" name="search_query" id="search_query" class="search_query"
+            placeholder="Rechercher un livre">
         </form>
       </div>
     </div>
@@ -19,7 +20,7 @@
                 <img src="<?= $book->getImage() ?>" alt="Photo of the book">
                 <h2><?= $book->getTitle() ?></h2>
                 <p><?= $book->getAuthor() ?></p>
-                <p class="books-list-seller">Vendu par : <?= $book->getUserName()  ?> </p>
+                <p class="books-list-seller">Vendu par : <?= $book->getUserName() ?> </p>
               </a>
             </div>
           </div>

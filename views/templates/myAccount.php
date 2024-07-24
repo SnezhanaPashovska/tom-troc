@@ -22,7 +22,8 @@
           </div>
           <div class="my-account-library">
             <p class="my-account-library-biblioteque">BIBLIOTHEQUE</p>
-            <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
+            <p class="my-account-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?>
+              livres</p>
           </div>
       </div>
       <div class="my-account-update">
@@ -51,7 +52,7 @@
           </tr>
         </thead>
         <tbody class="table-book">
-          <?php foreach ($userBooks as $book) : ?>
+          <?php foreach ($userBooks as $book): ?>
             <tr>
               <td><img src="<?= $book->getImage() ?>" alt="Photo of the book"></td>
               <td>
@@ -73,13 +74,14 @@
                 <div class="modify-book">
                   <a href="index.php?action=editBook&id=<?= $book->getId() ?>" class="modify-book-link">Éditer</a>
                 </div>
-                <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" class="delete-book-link" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
-    </div>
-    </td>
-    </tr>
-  <?php endforeach; ?>
-  </tbody>
-  </table>
+                <a href="index.php?action=deleteBook&id=<?= $book->getId() ?>" class="delete-book-link"
+                  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">Supprimer</a>
+      </div>
+      </td>
+      </tr>
+    <?php endforeach; ?>
+    </tbody>
+    </table>
   </div>
   </div>
 </section>

@@ -16,7 +16,7 @@ class View
     $content = $this->_renderViewFromTemplate($viewPath, $params);
     $template = $this->template;
     ob_start();
-    require(MAIN_VIEW_PATH);
+    require (MAIN_VIEW_PATH);
     echo ob_get_clean();
   }
 
@@ -25,7 +25,7 @@ class View
     if (file_exists($viewPath)) {
       extract($params);
       ob_start();
-      require($viewPath);
+      require $viewPath;
       return ob_get_clean();
     } else {
       throw new Exception("La vue '$viewPath' est introuvable.");

@@ -176,6 +176,8 @@ footer {
   width: 55%;
   border-radius: 20px;
   background-color: white;
+
+  overflow: hidden;
 }
 
 .my-account-books {
@@ -187,13 +189,15 @@ footer {
 .profile-public-uploads-table,
 .my-account-books-table {
   width: 100%;
-  padding: 40px 0px 5px 0px;
+  padding: 65px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   max-height: 900px;
-  border: 1px solid;
+  overflow: hidden;
+  border-collapse: collapse;
+  height: 100%;
 }
 
 .profile-public-date p,
@@ -293,6 +297,9 @@ footer {
   width: 100%;
   justify-content: center;
   table-layout: fixed;
+  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .table-content tr,
@@ -1315,7 +1322,7 @@ section.messages {
   overflow-y: auto;
 }
 
-.messages-inbox{
+.messages-inbox {
   width: 25%;
   background-color: #faf9f7;
   border: 1px solid transparent;
@@ -1323,7 +1330,7 @@ section.messages {
   max-height: 100vh;
 }
 
-.no-recent-message{
+.no-recent-message {
   padding-left: 10px;
 }
 
@@ -1344,7 +1351,7 @@ section.messages {
   padding: 10px 0;
   border: 1px solid transparent;
   margin-bottom: 10px;
-  
+
   padding: 20px;
 }
 
@@ -1506,7 +1513,7 @@ section.messages {
   padding-bottom: 10px;
 }
 
-.message-send_message-inbox{
+.message-send_message-inbox {
   width: 90%;
   margin-top: auto;
 }
@@ -1533,7 +1540,7 @@ section.messages {
   border: none;
   border-radius: 10px;
   font-weight: bold;
- 
+
   height: 53px;
   width: 150px;
 }
@@ -1543,26 +1550,23 @@ section.messages {
   background-color: #009655;
 }
 
-.error
-{
+.error {
   height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;     
+  align-items: center;
   text-align: center;
   line-height: 1.5;
 }
 
-.error a 
-{
+.error a {
   text-decoration: underline;
   text-underline-offset: 0.3em;
   cursor: pointer;
 }
 
-.error a:hover 
-{
+.error a:hover {
   color: #767573;
 }
 
@@ -1573,12 +1577,8 @@ section.messages {
 
 .message-send-form textarea[disabled] {
   background-color: #f0f0f0;
-  
 }
 
 .message-send-form button[disabled] {
   background-color: #d0d0d0;
- 
 }
-
-

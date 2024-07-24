@@ -7,7 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
   <script src="https://kit.fontawesome.com/1fff66d8ed.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/style.css">
   <title>Tom Troc</title>
@@ -28,13 +30,16 @@
       <div></div>
       <nav class="menu-list">
         <ul class="menu-list-nav">
-        <li><a href="index.php?action=messages"><img src="images/Iconmessagerie.svg" alt="Icon messagerie">Messagerie <span class="notification-badge">0</span></a></li>
-          <?php if (isset($_SESSION['user'])) : ?>
-           
-            <li><a href="index.php?action=myAccount"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon compte</a></li>
+          <li><a href="index.php?action=messages"><img src="images/Iconmessagerie.svg" alt="Icon messagerie">Messagerie
+              <span class="notification-badge">0</span></a></li>
+          <?php if (isset($_SESSION['user'])): ?>
+
+            <li><a href="index.php?action=myAccount"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon
+                compte</a></li>
             <li><a href="index.php?action=disconnect">Déconnexion</a></li>
-          <?php else : ?>
-            <li><a href="index.php?action=connectionForm"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon compte</a></li>
+          <?php else: ?>
+            <li><a href="index.php?action=connectionForm"><img src="images/Iconmoncompte.svg" alt="Icon mon compte">Mon
+                compte</a></li>
             <li><a href="index.php?action=connectionForm">Connexion</a></li>
           <?php endif; ?>
         </ul>

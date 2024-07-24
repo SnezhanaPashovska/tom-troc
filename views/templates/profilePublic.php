@@ -3,24 +3,27 @@
   <div class="container-profile-public">
     <div class="profile-public-info">
       <div class="profile-public-photo">
-        <img src="<?= ($user->getImage()) ?>" alt="Profile photo of the user">
+        <img src="<?= $user->getImage() ?>" alt="Profile photo of the user">
       </div>
       <div class="profile-public-name">
-        <h1><?= $user->getUserName()  ?></h1>
+        <h1><?= $user->getUserName() ?></h1>
       </div>
       <div class="profile-public-date">
         <p>Membre depuis <?= $user->getMembershipDuration() ?> </p>
       </div>
       <div class="profile-public-library">
         <p class="profile-public-library-biblioteque">BIBLIOTHEQUE</p>
-        <p class="profile-public-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= ($totalBooks) ?> livres</p>
+        <p class="profile-public-library-livres"><img src="images/Vector.svg" alt="Book icones"><?= $totalBooks ?>
+          livres</p>
       </div>
       <div class="profile-public-button">
-        <a href="index.php?action=messages&receiver_id=<?= $user->getId(); ?>" class="modify-book-link">Écrire un message</a>
+        <a href="index.php?action=messages&receiver_id=<?= $user->getId(); ?>" class="modify-book-link">Écrire un
+          message</a>
       </div>
     </div>
 
     <div class="profile-public-uploads">
+      
       <table class="profile-public-uploads-table">
         <thead class="table-header">
           <tr>
@@ -31,7 +34,7 @@
           </tr>
         </thead>
         <tbody class="table-content">
-          <?php foreach ($userBooks as $book) : ?>
+          <?php foreach ($userBooks as $book): ?>
             <tr>
               <td><img src="<?= $book->getImage() ?>" alt="Photo of the book"></td>
               <td>
@@ -47,6 +50,7 @@
           <?php endforeach; ?>
         </tbody>
       </table>
+      
     </div>
   </div>
 </section>
